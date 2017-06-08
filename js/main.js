@@ -1,71 +1,42 @@
-var audio_context = window.AudioContext || window.webkitAudioContext;
+var keys = new Tone.MultiPlayer({
+    urls : {
+        "hat" : "../samples/hat.wav",
+        "kick" : "../samples/kick.wav",
+        "snare" : "../samples/snare.wav"
+    },
+    volume : -10,
+    fadeOut : 0.1,
+}).toMaster();
 
-var con = new audio_context();
-var osc = con.createOscillator();
+var noteNames = ["hat", "snare", 'kick'];
 
 
+var loop = new Tone.Sequence(function(time, col){
+	var column = matrix1.matrix[col];
+    for (var i = 0; i < 4; i++){
 
-
-
-var hat;
-var kick;
-
-var hat_seq = [1,1,1,0,1,0,1,1,0,0,0,0,1,1,1,1];
-var kick_seq = [1,0,0,0,0,1,0,0,1,1,1];
-var step = 0;
-var got_up_to;
-var interval = 0.125;
-var wait_time = 0.2;
-
-setInterval(function(){
-    var now = con.currentTime;
-
-    var max_future_time = now + (wait_time);
-    if (got_up_to > now) {// already scheduled up to this point
-        now = got_up_to;
-    }
-
-    while (now <= max_future_time){
-        step ++;
-        if (hat_seq[step % hat_seq.length]){
-            // playSound(hat, now);
-            // playSound(kick, now);
-        }
-        now += interval;
-    }
-    got_up_to = now;
-
-}, wait_time*1000);
-
-loadSample('../samples/hat.wav', function(buffer){
-    hat = buffer;
-});
-loadSample('../samples/kick.wav', function(buffer){
-    kick = buffer;
-});
-
-function playSound(buffer, time){
-    var player = con.createBufferSource();
-    player.buffer = buffer;
-    player.start(time);
-    player.connect(con.destination);
+if (column[i] === 1){
+            var vel = Math.random() * 0.5 + 0.5;
+            keys.start(noteNames[i], time, 0, "32n", 0, vel);
 }
-
-
-
-
-
-
-function loadSample(url, callback){
-    var request = new XMLHttpRequest();
-    request.open('GET', url, true);
-    request.responseType = 'arraybuffer';
-    request.onload = function(){
-        var audioData = request.response;
-        con.decodeAudioData(audioData, function(buffer){
-            console.log('buffer');
-            callback(buffer);
-        });
     }
-    request.send();
-}
+}, [0, 1, 2, 3], "8n");
+
+Tone.Transport.start();
+
+nx.onload = function(){
+        nx.colorize("#333");
+        matrix2.col = 1;
+        matrix2.row = 1;
+        matrix1.col = 4;
+        matrix1.row = 3;
+        matrix1.init();
+        matrix2.init();
+        matrix1.draw();
+        matrix2.draw();
+    }
+var matrix2 = $('#matrix2');
+
+matrix2.on('click', function(){
+    matrix2.val.level === 1 ? loop.start() : loop.stop()
+});
