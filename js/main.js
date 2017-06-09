@@ -34,7 +34,7 @@ var eq = new Tone.EQ3({
 Tone.Transport.start();
 Tone.Transport.bpm.value = 120;
 
-keys.chain(volume,eq, Tone.Master);
+keys.chain(volume, Tone.Master);
 
 var vel = 0;
 var newVel = {
@@ -43,9 +43,9 @@ var newVel = {
     'hat':1
 };
 var pitch = {
-    'kick':10,
-    'snare':1,
-    'hat':1
+    'kick':0,
+    'snare':0,
+    'hat':0
 };
 var loop = new Tone.Sequence(function(time, col){
 	var column = matrix1.matrix[col];
