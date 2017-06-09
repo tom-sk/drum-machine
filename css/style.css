@@ -1,13 +1,8 @@
 body{
-    /*padding-top:60px;*/
     background: #fff;
 }
 #content {
     width:500px;
-}
-#knobPanel {
-    width:200px;
-    height: 200px;
 }
 
 #matrix2 {
@@ -15,43 +10,31 @@ body{
     height: 70px
 }
 #drum-controls {
-    position: relative;
-    margin:auto;
-    height:100px;
-    display:flex;
-    flex-direction: row;
-    align-items: flex-start;
+
 }
 .matrix-container {
-    display: inline-block;
+
 }
 #number {
     font-size: 20px !important;
 }
+.play-tempo{
+    height: 100px;
+    width:200px;
+    margin:0 auto;
+}
 #sliders{
-    display: flex;
-    flex-direction: row;
-    width: 200px;
-    overflow: hidden;
+    display: inline-flex;
 }
 .slider-dial{
-    /*width:200px;*/
-    /*overflow: hidden;*/
-    margin-left:10px;
-    /*background:#ccc;*/
+
 }
 .slider-dial .dial {
-    height: 10px;
-    margin-top:-45px;
-    margin-bottom:-45px;
+
 }
 .slider-dial .slider {
-    margin-left:8px;
+
 }
-.pich-dial-label {
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: 12px;
-    text-align: center;
-    margin-top: -3px;
-    margin-bottom: -3px;
+.filter-controls {
+
 }

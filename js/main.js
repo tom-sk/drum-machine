@@ -24,11 +24,17 @@ var vel = Math.random() * 0.5 + 0.5;
 
 
 var volume = new Tone.Volume({volume:1});
-
+var eq = new Tone.EQ3({
+    low:0,
+    mid:0,
+    high:0,
+    lowFrequency:400,
+    highFrequency:2500
+});
 Tone.Transport.start();
 Tone.Transport.bpm.value = 120;
 
-keys.chain(volume, Tone.Master);
+keys.chain(volume,eq, Tone.Master);
 
 var vel = 0;
 var newVel = {
@@ -72,7 +78,7 @@ nx.onload = function(){
         });
 
 
-        number.resize(60, 30);
+        number.resize(70, 30);
         number.min = 0;
         number.set({value: 120});
         number.on('*', function(data){Tone.Transport.bpm.value = data.value;});
@@ -91,18 +97,27 @@ nx.onload = function(){
         });
         hatPitch.set({value: 5})
         hatPitch.on('*', function(data){
-            // pitch['hat'] = data.value;
             pitch['hat'] = convertRange(data.value, [0,10], [-10,10]);
         });
         snarePitch.set({value: 5})
         snarePitch.on('*', function(data){
-            // pitch['snare'] = data.value;
             pitch['snare'] = convertRange(data.value, [0,10], [-10,10]);
         });
 
         kickPitch.on('*', function(data){
             pitch['kick'] = data.value;
-
+        });
+        filterLow.set({value: 10})
+        filterLow.on('*', function(data){
+            eq.low.value = convertRange(data.value, [0,10], [-15,0]);
+        });
+        filterMid.set({value: 10})
+        filterMid.on('*', function(data){
+            eq.mid.value = convertRange(data.value, [0,10], [-15,0]);
+        });
+        filterHigh.set({value: 10})
+        filterHigh.on('*', function(data){
+            eq.high.value = convertRange(data.value, [0,10], [-15,0]);
         });
 
     }

@@ -10,15 +10,16 @@
 
     <div class='columns' id='content'>
 
-            <canvas nx="matrix" id='matrix1'></canvas>
+        <canvas nx="matrix" id='matrix1'></canvas>
 
 
         <div id='drum-controls'>
-            <div class='play-button'>
-                <canvas nx="matrix" id='matrix2' ></canvas>
+            <div class="play-tempo">
+                <div class='play-button'>
+                    <canvas nx="matrix" id='matrix2' ></canvas>
+                </div>
+                <canvas nx="number" id="number"></canvas>
             </div>
-
-            <canvas nx="number" id="number"></canvas>
 
             <div id="sliders">
                 <div class="slider-dial">
@@ -36,6 +37,11 @@
                     <canvas class='slider' min='0' max='100' nx="slider" id='kickVel' label='BD'></canvas>
                 </div>
 
+            </div>
+            <div class='filter-controls'>
+                <canvas class='dial' min='0' max='10' width='50' nx="dial" id="filterLow"></canvas>
+                <canvas class='dial' min='0' max='10' width='50' nx="dial" id="filterMid"></canvas>
+                <canvas class='dial' min='0' max='10' width='50' nx="dial" id="filterHigh"></canvas>
             </div>
         </div>
 
