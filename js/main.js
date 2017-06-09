@@ -7,6 +7,7 @@ var keys = new Tone.MultiPlayer({
     volume : -10,
     fadeOut : 0.1,
 });
+var synth = new Tone.Synth().toMaster();
 
 var noteNames = Object.keys(keys.buffers._buffers);
 var stepLength = 8;
@@ -35,18 +36,25 @@ var newVel = {
     'snare':1,
     'hat':1
 };
+var pitch = {
+    'kick':10,
+    'snare':1,
+    'hat':1
+};
 var loop = new Tone.Sequence(function(time, col){
 	var column = matrix1.matrix[col];
     for (var i = 0; i < 4; i++){
         matrix1.jumpToCol(col);
         if (column[i] === 1){
             // var vel = Math.random() * 0.5 + 0.5;
-            keys.start(noteNames[i], time, 0, "32n", 0, newVel[noteNames[i]]);
+            keys.start(noteNames[i], time, 0, "32n", pitch[noteNames[i]], newVel[noteNames[i]]);
         }
     }
 }, stepLengthCalc(stepLength), subDivision);
 
-
+function convertRange( value, r1, r2 ) {
+    return ( value - r1[ 0 ] ) * ( r2[ 1 ] - r2[ 0 ] ) / ( r1[ 1 ] - r1[ 0 ] ) + r2[ 0 ];
+}
 nx.onload = function(){
         nx.colorize("#333");
         matrix2.col = 1;
@@ -81,4 +89,20 @@ nx.onload = function(){
         kickVel.on('*', function(data){
             newVel['kick'] = data.value / 100;
         });
+        hatPitch.set({value: 5})
+        hatPitch.on('*', function(data){
+            // pitch['hat'] = data.value;
+            pitch['hat'] = convertRange(data.value, [0,10], [-10,10]);
+        });
+        snarePitch.set({value: 5})
+        snarePitch.on('*', function(data){
+            // pitch['snare'] = data.value;
+            pitch['snare'] = convertRange(data.value, [0,10], [-10,10]);
+        });
+
+        kickPitch.on('*', function(data){
+            pitch['kick'] = data.value;
+
+        });
+
     }

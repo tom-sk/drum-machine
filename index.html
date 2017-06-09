@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>nexusUI</title>
+        <title>nexus drum machine</title>
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
@@ -21,11 +21,24 @@
             <canvas nx="number" id="number"></canvas>
 
             <div id="sliders">
-                <canvas min='0' max='100' nx="slider" id='hatVel' label='HH' ></canvas>
-                <canvas min='0' max='100' nx="slider" id='snareVel' label='SN'></canvas>
-                <canvas min='0' max='100' nx="slider" id='kickVel' label='BD'></canvas>
+                <div class="slider-dial">
+                    <canvas class='dial' min='0' max='10' width='50' nx="dial" id="hatPitch"></canvas>
+                    <canvas class='slider' min='0' max='100' nx="slider" id='hatVel' label='HH' ></canvas>
+                </div>
+
+                <div class="slider-dial">
+                    <canvas class='dial' min='0' max='10' width='50' nx="dial" id="snarePitch"></canvas>
+                    <canvas class='slider' min='0' max='100' nx="slider" id='snareVel' label='SN'></canvas>
+                </div>
+
+                <div class="slider-dial">
+                    <canvas class='dial' min='0' max='10' width='50' nx="dial" id="kickPitch"></canvas>
+                    <canvas class='slider' min='0' max='100' nx="slider" id='kickVel' label='BD'></canvas>
+                </div>
+
             </div>
         </div>
+
     </div>
 
 

@@ -28,3 +28,30 @@ body{
 #number {
     font-size: 20px !important;
 }
+#sliders{
+    display: flex;
+    flex-direction: row;
+    width: 200px;
+    overflow: hidden;
+}
+.slider-dial{
+    /*width:200px;*/
+    /*overflow: hidden;*/
+    margin-left:10px;
+    /*background:#ccc;*/
+}
+.slider-dial .dial {
+    height: 10px;
+    margin-top:-45px;
+    margin-bottom:-45px;
+}
+.slider-dial .slider {
+    margin-left:8px;
+}
+.pich-dial-label {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 12px;
+    text-align: center;
+    margin-top: -3px;
+    margin-bottom: -3px;
+}
