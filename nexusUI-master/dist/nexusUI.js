@@ -40,11 +40,11 @@ window.onload = function() {
     document.addEventListener("touchmove", nx.blockMove, true);
     document.addEventListener("touchstart", nx.blockMove, true);
   }
-  
+
   nx.onload();
 
   nx.startPulse();
-  
+
 };
 },{"./lib/core/manager":2,"./lib/utils/dom":4,"./lib/utils/drawing":5,"./lib/utils/math":6,"extend":45,"webfontloader":46}],2:[function(require,module,exports){
 
@@ -1135,14 +1135,14 @@ widget.prototype.makeRoomForLabel = function() {
 
 },{"../utils/dom":4,"../utils/drawing":5,"../utils/timing":7,"../utils/transmit":8,"events":40,"util":44}],4:[function(require,module,exports){
 
-/** @class utils 
+/** @class utils
   Shared utility functions. These functions are exposed as methods of nx in NexusUI projects, i.e. .mtof() here can be accessed in your project with nx.mtof().
 */
 
 
-/** @method findPosition 
+/** @method findPosition
     Returns the offset of an HTML element. Returns an object with 'top' and 'left' properties.
-    @param {DOM element} [element] 
+    @param {DOM element} [element]
     ```js
     var button1Offset = nx.findPosition(button1.canvas)
     ```
@@ -1235,7 +1235,7 @@ exports.hexToRgb = function(hex, a) {
   if (!a) {
     a = 0.5;
   }
-  
+
   var r = parseInt(result[1], 16);
   var g = parseInt(result[2], 16);
   var b = parseInt(result[3], 16);
@@ -1247,7 +1247,7 @@ exports.isInside = function(clickedNode,currObject) {
   if (clickedNode.x > currObject.x && clickedNode.x < (currObject.x+currObject.w) && clickedNode.y > currObject.y && clickedNode.y < (currObject.y+currObject.h)) {
     return true;
   } else {
-    return false; 
+    return false;
   }
 }
 
@@ -1259,7 +1259,7 @@ exports.makeRoundRect = function(ctx,xpos,ypos,wid,hgt,depth) {
   if (!depth) {
     depth = 2;
   }
-  
+
   ctx.beginPath();
   ctx.moveTo(x1+depth, y1); //TOP LEFT
   ctx.lineTo(x2-depth, y1); //TOP RIGHT
@@ -1307,10 +1307,10 @@ exports.shadeBlendConvert = function(p, from, to) {
 },{"./math":6}],6:[function(require,module,exports){
 
 
-/** @method toPolar 
+/** @method toPolar
     Receives cartesian coordinates and returns polar coordinates as an object with 'radius' and 'angle' properties.
-    @param {float} [x] 
-    @param {float} [y] 
+    @param {float} [x]
+    @param {float} [y]
     ```js
     var ImOnACircle = nx.toPolar({ x: 20, y: 50 }})
     ```
@@ -1325,10 +1325,10 @@ exports.toPolar = function(x,y) {
   return {radius: r, angle: theta};
 }
 
-/** @method toCartesian 
+/** @method toCartesian
     Receives polar coordinates and returns cartesian coordinates as an object with 'x' and 'y' properties.
-    @param {float} [radius] 
-    @param {float} [angle] 
+    @param {float} [radius]
+    @param {float} [angle]
 */
 exports.toCartesian = function(radius, angle){
   var cos = Math.cos(angle);
@@ -1337,11 +1337,11 @@ exports.toCartesian = function(radius, angle){
 }
 
 
-/** @method clip 
+/** @method clip
     Limits a number to within low and high values.
-    @param {float} [input value] 
-    @param {float} [low limit] 
-    @param {float} [high limit] 
+    @param {float} [input value]
+    @param {float} [low limit]
+    @param {float} [high limit]
     ```js
     nx.clip(5,0,10) // returns 5
     nx.clip(15,0,10) // returns 10
@@ -1352,10 +1352,10 @@ exports.clip = function(value, low, high) {
   return Math.min(high, Math.max(low, value));
 }
 
-/** @method prune 
+/** @method prune
     Limits a float to within a certain number of decimal places
-    @param {float} [input value] 
-    @param {integer} [max decimal places] 
+    @param {float} [input value]
+    @param {integer} [max decimal places]
     ```js
     nx.prine(1.2345, 3) // returns 1.234
     nx.prune(1.2345, 1) // returns 1.2
@@ -1376,9 +1376,9 @@ exports.prune = function(data, scale) {
 }
 
 
-/** @method scale 
+/** @method scale
     Scales an input number to a new range of numbers
-    @param {float} [input value] 
+    @param {float} [input value]
     @param {float} [low1]  input range (low)
     @param {float} [high1] input range (high)
     @param {float} [low2] output range (low)
@@ -1389,12 +1389,12 @@ exports.prune = function(data, scale) {
     ```
 */
 exports.scale = function(inNum, inMin, inMax, outMin, outMax) {
-  return (((inNum - inMin) * (outMax - outMin)) / (inMax - inMin)) + outMin;  
+  return (((inNum - inMin) * (outMax - outMin)) / (inMax - inMin)) + outMin;
 }
 
-/** @method invert 
-    Equivalent to nx.scale(input,0,1,1,0). Inverts a normalized (0-1) number. 
-    @param {float} [input value]  
+/** @method invert
+    Equivalent to nx.scale(input,0,1,1,0). Inverts a normalized (0-1) number.
+    @param {float} [input value]
     ```js
     nx.invert(0.25) // returns 0.75
     nx.invert(0) // returns 1
@@ -1408,14 +1408,14 @@ exports.bounce = function(posIn, borderMin, borderMax, delta) {
   if (posIn > borderMin && posIn < borderMax) {
     return delta;
   } else if (posIn <= borderMin) {
-    return Math.abs(delta); 
+    return Math.abs(delta);
   } else if (posIn >= borderMax) {
     return Math.abs(delta) * (-1);
   }
 }
 
 
-/** @method mtof 
+/** @method mtof
     MIDI to frequency conversion. Returns frequency in Hz.
     @param {float} [MIDI] MIDI value to convert
     ```js
@@ -1427,7 +1427,7 @@ exports.mtof = function(midi) {
 }
 
 
-/** @method random 
+/** @method random
     Returns a random integer between 0 a given scale parameter.
     @param {float} [scale] Upper limit of random range.
     ```js
@@ -1440,7 +1440,7 @@ exports.random = function(scale) {
 
 
 exports.interp = function(loc,min,max) {
-  return loc * (max - min) + min;  
+  return loc * (max - min) + min;
 }
 
 exports.lphistory = {}
@@ -1505,8 +1505,8 @@ exports.throttle = function(func, wait) {
   return function() {
     var context = this, args = arguments;
     if (!timeout) {
-      // the first time the event fires, we setup a timer, which 
-      // is used as a guard to block subsequent calls; once the 
+      // the first time the event fires, we setup a timer, which
+      // is used as a guard to block subsequent calls; once the
       // timer's handler fires, we reset it and create a new one
       timeout = setTimeout(function() {
         timeout = null;
@@ -1521,7 +1521,7 @@ exports.throttle = function(func, wait) {
 }
 },{}],8:[function(require,module,exports){
 exports.defineTransmit = function(protocol) {
-  
+
   var newTransmit;
 
   if (typeof(protocol)=="function") {
@@ -1534,25 +1534,25 @@ exports.defineTransmit = function(protocol) {
           this.emit('*',data, passive);
         }
         return newTransmit
-      
+
       case 'ajax':
         newTransmit = function(data) {
           this.makeOSC(exports.ajaxTransmit, data);
         }
         return newTransmit
-      
+
       case 'node':
         newTransmit = function(data) {
           this.makeOSC(exports.nodeTransmit, data);
         }
         return newTransmit
-      
+
       case 'ios':
         newTransmit = function(data) {
-          
+
         }
         return newTransmit
-      
+
       case 'max':
         newTransmit = function(data) {
           this.makeOSC(exports.maxTransmit, data);
@@ -1588,7 +1588,7 @@ exports.setWidgetTransmit = function(protocol) {
 exports.ajaxTransmit = function(subPath, data) {
 
     var oscPath = subPath=='value' ? this.oscPath : this.oscPath+"/"+subPath;
-     
+
     xmlhttp=new XMLHttpRequest();
     xmlhttp.open("POST",nx.ajaxPath,true);
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -1601,7 +1601,7 @@ exports.setAjaxPath = function(path) {
 }
 
 exports.nodeTransmit = function(subPath, data) {
-   
+
     var msg = {
       oscName: subPath=='value' ? this.oscPath : this.oscPath+"/"+subPath,
       value: data
@@ -1618,8 +1618,8 @@ exports.maxTransmit = function (subPath, data) {
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class banner      
+/**
+	@class banner
 	"Powered by NexusUI" tag with a link to our website. Use it if you want to share the positive vibes of NexusUI. Thanks for using!
 	```html
 	<canvas nx="banner"></canvas>
@@ -1630,7 +1630,7 @@ var widget = require('../core/widget');
 var banner = module.exports = function (target) {
 	this.defaultSize = { width: 100, height: 40 };
 	widget.call(this, target);
-	
+
 	//unique attributes
 	/** @property {string} message1 The first line of text on the banner. */
 	this.message1 = "Powered By";
@@ -1670,7 +1670,7 @@ banner.prototype.draw = function() {
 
 		fillStyle = this.colors.accent;
 		fillRect(15,0,this.GUI.w-30,this.GUI.h-10);
-		
+
 		fillStyle = this.colors.white;
 		font = this.fontWeight + " " +this.GUI.h/5+"px "+this.font;
 		textAlign = "center";
@@ -1690,7 +1690,7 @@ banner.prototype.draw = function() {
 			lineTo(this.GUI.w-15,this.GUI.h-10);
 			fill();
 		closePath();
-	
+
 	}
 }
 
@@ -1706,10 +1706,10 @@ var drawing = require('../utils/drawing');
 
 var button = module.exports = function(target) {
 
-/** 
-	
+/**
+
 	@public
-	@class button 
+	@class button
 
 	Touch button with three modes of interaction ("toggle", "impulse", and "aftertouch").
 	```html
@@ -1721,22 +1721,22 @@ var button = module.exports = function(target) {
 	this.defaultSize = { width: 50, height: 50 };
 	widget.call(this, target);
 
-	/** 
+	/**
 		@property {object}  val  Main value set and output, with sub-properties:
 		| &nbsp; | data
 		| --- | ---
 		| *press* | 0 (clicked) or 1 (unclicked)
 		| *x* | 0-1 float of x-position of click ("aftertouch" mode only)
-		| *y* | 0-1 float of y-position of click ("aftertouch" mode only) 
-		
+		| *y* | 0-1 float of y-position of click ("aftertouch" mode only)
+
 		When the widget is interacted with, val is sent as the output data for the widget.
-		```js 
+		```js
 		button1.on('*', function(data) {
 			// some code using data.press, data.x, and data.y
 		});
 		```
-		Or, if NexusUI is outputting OSC (e.g. if nx.sendsTo("ajax")), val will be broken into OSC messages: 
-		```html 
+		Or, if NexusUI is outputting OSC (e.g. if nx.sendsTo("ajax")), val will be broken into OSC messages:
+		```html
 		/button1/press 1
 		/button1/x 37
 		/button1/y 126
@@ -1745,13 +1745,13 @@ var button = module.exports = function(target) {
 	this.val = {
 		press: 0
 	}
-	
+
 	/** @property {string}  mode  Interaction mode. Options:
 	<b>impulse</b> &nbsp; 1 on click <br>
 	<b>toggle</b> &nbsp;  1 on click, 0 on release<br>
-	<b>aftertouch</b> &nbsp; 1, x, y on click; x, y on move; 0, x, y on release _(default)_ <br> 
-	```js 
-	button1.mode = "aftertouch" 
+	<b>aftertouch</b> &nbsp; 1, x, y on click; x, y on move; 0, x, y on release _(default)_ <br>
+	```js
+	button1.mode = "aftertouch"
 	```
 	*/
 	this.mode = "aftertouch";
@@ -1782,9 +1782,9 @@ button.prototype.init = function() {
 button.prototype.draw = function() {
 
 	this.erase();
-	
+
 	with (this.context) {
-		
+
 		if (this.image !== null) {
 			// Image Button
 			if (!this.val.press) {
@@ -1804,14 +1804,14 @@ button.prototype.draw = function() {
 					fillStyle = this.colors.accent;
 					fillRect (0, 0, this.GUI.w, this.GUI.h);
 					globalAlpha = 1;
-					
-				} 
+
+				}
 			}
-			
+
 		} else {
-	
+
 			// Regular Button
-			
+
 			if (!this.val.press) {
 				fillStyle = this.colors.fill
 				strokeStyle = this.colors.border
@@ -1858,7 +1858,7 @@ button.prototype.draw = function() {
 		}
 
 		this.drawLabel();
-		
+
 	}
 }
 
@@ -1888,14 +1888,14 @@ button.prototype.move = function () {
 
 button.prototype.release = function() {
 	this.val["press"] = 0;
-	if (this.mode=="toggle" || this.mode=="aftertouch") { 
+	if (this.mode=="toggle" || this.mode=="aftertouch") {
 		this.transmit(this.val);
 	}
 	this.draw();
 }
 
 
-/** @method setImage 
+/** @method setImage
 	Turns the button into an image button with custom image. Sets the default (unclicked) button image.
 	@param {string} [src] Image source */
 button.prototype.setImage = function(image) {
@@ -1910,7 +1910,7 @@ button.prototype.setHoverImage = function(image) {
 	this.imageHover.src = image;
 }
 
-/** @method setTouchImage 
+/** @method setTouchImage
 	Sets the image that will show when the button is clicked.
 	@param {string} [src] Image source */
 button.prototype.setTouchImage = function(image) {
@@ -1922,22 +1922,22 @@ button.prototype.setTouchImage = function(image) {
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class colors      
+/**
+	@class colors
 	Color picker that outputs RBG values
 	```html
 	<canvas nx="colors"></canvas>
 	```
 	<canvas nx="colors" style="margin-left:25px"></canvas>
 */
-				
+
 var colors = module.exports = function (target) {
-	
-	this.defaultSize = { width: 100, height: 100 };	
+
+	this.defaultSize = { width: 100, height: 100 };
 	widget.call(this, target);
 
 	this.init();
-	
+
 }
 util.inherits(colors, widget);
 
@@ -1946,19 +1946,19 @@ colors.prototype.init = function() {
 	/* new tactic */
 
 	this.gradient1 = this.context.createLinearGradient(0,0,this.GUI.w,0)
- 	this.gradient1.addColorStop(0, '#F00'); 
- 	this.gradient1.addColorStop(0.17, '#FF0'); 
- 	this.gradient1.addColorStop(0.34, '#0F0'); 
- 	this.gradient1.addColorStop(0.51, '#0FF'); 
- 	this.gradient1.addColorStop(0.68, '#00F'); 
- 	this.gradient1.addColorStop(0.85, '#F0F'); 
- 	this.gradient1.addColorStop(1, '#F00'); 
+ 	this.gradient1.addColorStop(0, '#F00');
+ 	this.gradient1.addColorStop(0.17, '#FF0');
+ 	this.gradient1.addColorStop(0.34, '#0F0');
+ 	this.gradient1.addColorStop(0.51, '#0FF');
+ 	this.gradient1.addColorStop(0.68, '#00F');
+ 	this.gradient1.addColorStop(0.85, '#F0F');
+ 	this.gradient1.addColorStop(1, '#F00');
 
 	this.gradient2 = this.context.createLinearGradient(0,0,0,this.GUI.h)
- 	this.gradient2.addColorStop(0, 'rgba(0,0,0,255)'); 
- 	this.gradient2.addColorStop(0.49, 'rgba(0,0,0,0)'); 
- 	this.gradient2.addColorStop(0.51, 'rgba(255,255,255,0)'); 
- 	this.gradient2.addColorStop(0.95, 'rgba(255,255,255,255)'); 
+ 	this.gradient2.addColorStop(0, 'rgba(0,0,0,255)');
+ 	this.gradient2.addColorStop(0.49, 'rgba(0,0,0,0)');
+ 	this.gradient2.addColorStop(0.51, 'rgba(255,255,255,0)');
+ 	this.gradient2.addColorStop(0.95, 'rgba(255,255,255,255)');
 
 	this.draw();
 }
@@ -1990,15 +1990,15 @@ colors.prototype.click = function(e) {
 	} else {
 		return;
 	}
-	
+
 
 	/** @property {object}  val  RGB color value at mouse position. <br> This is also the widget's data output (See <a href="#nexusui-api-widget-widgetval">widget.val</a>). <br> Properties:
 	| &nbsp; | data
 	| --- | ---
 	| *r* | red value 0-256
 	| *g* | green value 0-256
-	| *b* | blue value 0-256 
-	```js 
+	| *b* | blue value 0-256
+	```js
 	colors1.on('*', function(data) {
 		// some code using data.r, data.g, and data.b
 	}
@@ -2006,8 +2006,8 @@ colors.prototype.click = function(e) {
 	*/
 
 	this.val = {
-		r: imgData.data[0], 
-		g: imgData.data[1], 
+		r: imgData.data[0],
+		g: imgData.data[1],
 		b: imgData.data[2]
 	}
 	this.transmit(this.val);
@@ -2022,8 +2022,8 @@ colors.prototype.move = function(e) {
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class comment      
+/**
+	@class comment
 	Text comment
 	```html
 	<canvas nx="comment"></canvas>
@@ -2032,20 +2032,20 @@ var widget = require('../core/widget');
 */
 
 var comment = module.exports = function (target) {
-	
+
 	this.defaultSize = { width: 100, height: 20 };
 	widget.call(this, target);
 
-	/** @property {object}  val   
+	/** @property {object}  val
 		| &nbsp; | data
 		| --- | ---
 		| *text* | text of comment area (as string)
-		```js 
+		```js
 		comment1.val.text = "This is my comment"
 		comment1.draw()
 		```
 	*/
-	
+
 	this.val = {
 		text: "comment"
 	}
@@ -2076,10 +2076,10 @@ comment.prototype.draw = function() {
 
 	this.erase();
 	with (this.context) {
-		
+
 		fillStyle = this.colors.fill;
 		fillRect(0,0,this.GUI.w,this.GUI.h);
-		
+
 		fillStyle = this.colors.black;
 		textAlign = "left";
 		font = this.size+"px 'Open Sans'";
@@ -2091,8 +2091,8 @@ var math = require('../utils/math')
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class crossfade      
+/**
+	@class crossfade
 	Crossfade for panning or mixing
 	```html
 	<canvas nx="crossfade"></canvas>
@@ -2104,7 +2104,7 @@ var crossfade = module.exports = function (target) {
 	this.defaultSize = { width: 100, height: 30 };
 	widget.call(this, target);
 
-	/** @property {object}  val   
+	/** @property {object}  val
 		| &nbsp; | data
 		| --- | ---
 		| *value* | Crossfade value (float -1 to 1)
@@ -2125,11 +2125,11 @@ crossfade.prototype.init = function() {
 }
 
 crossfade.prototype.draw = function() {
-	
+
 	this.erase();
 
 	this.location = Math.pow(this.val.R,2)
-		
+
 	with (this.context) {
 
 		fillStyle = this.colors.fill;
@@ -2158,7 +2158,7 @@ crossfade.prototype.draw = function() {
 	}
 
 	this.drawLabel()
-	
+
 }
 
 crossfade.prototype.click = function() {
@@ -2179,8 +2179,8 @@ var math = require('../utils/math');
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class dial      
+/**
+	@class dial
 	Circular dial
 	```html
 	<canvas nx="dial"></canvas>
@@ -2189,10 +2189,10 @@ var widget = require('../core/widget');
 */
 
 var dial = module.exports = function(target) {
-	
+
 	this.defaultSize = { width: 100, height: 100 };
 	widget.call(this, target);
-	
+
 	//define unique attributes
 	this.circleSize;
 	this.handleLength;
@@ -2208,7 +2208,7 @@ var dial = module.exports = function(target) {
 	/** @property {float}  responsivity    How much the dial increments on drag. Default: 0.004<br>
 	*/
 	this.responsivity = 0.004;
-	
+
 	this.aniStart = 0;
 	this.aniStop = 1;
 	this.aniMove = 0.01;
@@ -2235,7 +2235,7 @@ var dial = module.exports = function(target) {
 	this.calculateDigits = nx.calculateDigits
 
 	this.init();
-	
+
 }
 
 util.inherits(dial, widget);
@@ -2245,13 +2245,13 @@ dial.prototype.init = function() {
 	this.circleSize = (Math.min(this.center.x, this.center.y));
 	this.handleLength = this.circleSize;
 	this.mindim = Math.min(this.GUI.w,this.GUI.h)
-	
+
 	if (this.mindim<101 || this.mindim<101) {
 		this.accentWidth = this.lineWidth * 1;
 	} else {
 		this.accentWidth = this.lineWidth * 2;
 	}
-	
+
 	this.draw();
 
 }
@@ -2265,16 +2265,16 @@ dial.prototype.draw = function() {
 	//var point = math.toCartesian(this.handleLength, dial_angle);
 
 	this.erase();
-	
+
 	with (this.context) {
-		
+
 		lineCap = 'butt';
 		beginPath();
 			lineWidth = this.circleSize/2;
 			arc(this.center.x, this.center.y, this.circleSize-lineWidth/2, Math.PI * 0, Math.PI * 2, false);
 			strokeStyle = this.colors.fill;
 			stroke();
-		closePath(); 
+		closePath();
 
 		//draw round accent
 		lineCap = 'butt';
@@ -2283,7 +2283,7 @@ dial.prototype.draw = function() {
 			arc(this.center.x, this.center.y, this.circleSize-lineWidth/2, Math.PI * 0.5, dial_position, false);
 			strokeStyle = this.colors.accent;
 			stroke();
-		closePath(); 
+		closePath();
 
 		clearRect(this.center.x-this.GUI.w/40,this.center.y,this.GUI.w/20,this.GUI.h/2)
 
@@ -2302,7 +2302,7 @@ dial.prototype.draw = function() {
     //
     //
     this.val.value = math.prune(this.rangify(normalval),3)
-		
+
 
 		//var valdigits = this.max ? Math.floor(this.max).toString().length : 1
 		//valdigits += this.step ? this.step < 1 ? 1 : 2 : 2
@@ -2336,12 +2336,12 @@ dial.prototype.click = function(e) {
 }
 
 
-dial.prototype.move = function() {	
+dial.prototype.move = function() {
 	var normalval = this.normalize(this.val.value)
 	normalval = math.clip((normalval - (this.deltaMove.y * this.responsivity)), 0, 1);
 	this.val.value = math.prune(this.rangify(normalval), 4)
 	this.transmit(this.val);
-	
+
 	this.draw();
 }
 
@@ -2350,11 +2350,11 @@ dial.prototype.release = function() {
 	this.aniStop = this.val.value;
 }
 
-/** @method animate 
+/** @method animate
 	Animates the dial
 	@param {string} [type] Type of animation. Currently accepts "bounce" (bounces between mousedown and mouserelease points) or "none" */
 dial.prototype.animate = function(aniType) {
-	
+
 	switch (aniType) {
 		case "bounce":
 			nx.aniItems.push(this.aniBounce.bind(this));
@@ -2363,7 +2363,7 @@ dial.prototype.animate = function(aniType) {
 			nx.aniItems.splice(nx.aniItems.indexOf(this.aniBounce));
 			break;
 	}
-	
+
 }
 
 dial.prototype.aniBounce = function() {
@@ -2374,7 +2374,7 @@ dial.prototype.aniBounce = function() {
 			this.aniStop = this.aniStart;
 			this.aniStart = this.stopPlaceholder;
 		}
-		this.aniMove = math.bounce(this.val.value, this.aniStart, this.aniStop, this.aniMove);	
+		this.aniMove = math.bounce(this.val.value, this.aniStart, this.aniStop, this.aniMove);
 		this.draw();
 		this.val.value = math.prune(this.val.value, 4)
 		this.transmit(this.val);
@@ -2389,8 +2389,8 @@ var math = require('../utils/math')
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class envelope      
+/**
+	@class envelope
 	Multi-point line ramp generator
 	```html
 	<canvas nx="envelope"></canvas>
@@ -2401,7 +2401,7 @@ var widget = require('../core/widget');
 var envelope = module.exports = function (target) {
 	this.defaultSize = { width: 200, height: 100 };
 	widget.call(this, target);
-	
+
 	this.nodeSize = 1;
 	/** @property {boolean} active Whether or not the envelope is currently animating. */
 	this.active = false;
@@ -2414,8 +2414,8 @@ var envelope = module.exports = function (target) {
 	this.scanIndex = 0
 
 	//define unique attributes
-	
-	/** @property {object}  val   
+
+	/** @property {object}  val
 		| &nbsp; | data
 		| --- | ---
 		| *amp* | amplitude at current point of ramp (float 0-1)
@@ -2527,11 +2527,11 @@ envelope.prototype.draw = function() {
 			fill();
 			globalAlpha = 1
 		closePath();
-	
+
 
 
 	}
-	
+
 	this.drawLabel();
 }
 
@@ -2539,7 +2539,7 @@ envelope.prototype.scaleNode = function(nodeIndex) {
 	var i = nodeIndex;
 	var prevX = 0;
 	var nextX = this.GUI.w;
-	
+
 	var actualX = this.val.points[i].x;
 	var actualY = (this.GUI.h - this.val.points[i].y);
 	var clippedX = math.clip(actualX/this.GUI.w, 0, 1);
@@ -2616,15 +2616,15 @@ envelope.prototype.pulse = function() {
 			} else {
 				this.stop();
 			}
-			
+
 		}
 		this.val.index = percentDone;
-	
+
 		if (this.val.index > this.val.points[this.val.points.length-1].x) {
 			this.val.amp = this.val.points[this.val.points.length-1].y
 		} else if (this.val.index < this.val.points[0].x) {
 			this.val.amp = this.val.points[0].y
-		} else {				
+		} else {
 			this.scanIndex = 0;
 			while (this.val.index > this.val.points[this.scanIndex].x) {
 				this.scanIndex++;
@@ -2634,11 +2634,11 @@ envelope.prototype.pulse = function() {
 			var prevPX = this.val.points[this.scanIndex-1].x;
 			var nextPY = this.val.points[this.scanIndex].y;
 			var prevPY = this.val.points[this.scanIndex-1].y;
-		
+
 			this.val.amp = math.interp((this.val.index-prevPX)/(nextPX - prevPX),prevPY,nextPY);
 
 		}
-	
+
 		this.transmit(this.val);
 		this.draw();
 	}
@@ -2649,7 +2649,7 @@ envelope.prototype.pulse = function() {
 envelope.prototype.start = function() {
 	this.active = true;
 	this.val.index = 0;
-	
+
 	// set startTime
 	startTime = nx.context.currentTime;
 }
@@ -2727,8 +2727,8 @@ var math = require('../utils/math')
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class joints      
+/**
+	@class joints
 	2D slider with connections to several points; a proximity-based multislider.
 	```html
 	<canvas nx="joints"></canvas>
@@ -2739,12 +2739,12 @@ var widget = require('../core/widget');
 var joints = module.exports = function (target) {
 	this.defaultSize = { width: 150, height: 150 };
 	widget.call(this, target);
-	
+
 	/* @property {integer} nodeSize The size of the proximity points in pixels */
-	this.nodeSize = this.GUI.w/14; 
+	this.nodeSize = this.GUI.w/14;
 	this.values = [0,0];
 
-	/** @property {object}  val  
+	/** @property {object}  val
 		| &nbsp; | data
 		| --- | ---
 		| *x* | x position of touch/mouse
@@ -2753,7 +2753,7 @@ var joints = module.exports = function (target) {
 		| *node1* | nearness to second node if within range (float 0-1)
 		| *node2* | nearness to third node if within range (float 0-1)
 		| etc... | &nbsp;
-		
+
 	*/
 	this.val = {
 		x: 0.35,
@@ -2805,12 +2805,12 @@ joints.prototype.draw = function() {
 			fillStyle = this.colors.border;
 			font = "14px courier";
 			fillText(this.default_text, 10, 20);
-		}	
+		}
 		fillStyle = this.colors.accent;
 		strokeStyle = this.colors.border;
 		for (var i in this.joints) {
 			beginPath();
-				arc(this.joints[i].x*this.GUI.w, this.joints[i].y*this.GUI.h, this.nodeSize/2, 0, Math.PI*2, true);					
+				arc(this.joints[i].x*this.GUI.w, this.joints[i].y*this.GUI.h, this.nodeSize/2, 0, Math.PI*2, true);
 				fill();
 			closePath();
 			var cnctX = Math.abs(this.joints[i].x*this.GUI.w-this.drawingX);
@@ -2829,7 +2829,7 @@ joints.prototype.draw = function() {
 			}
 		}
 	}
-	
+
 	this.drawLabel();
 }
 
@@ -2853,7 +2853,7 @@ joints.prototype.drawNode = function() {
 			fillStyle = this.colors.accent;
 			strokeStyle = this.colors.border;
 			lineWidth = this.lineWidth;
-			arc(this.drawingX, this.drawingY, this.nodeSize, 0, Math.PI*2, true);					
+			arc(this.drawingX, this.drawingY, this.nodeSize, 0, Math.PI*2, true);
 			fill();
 		closePath();
 	}
@@ -2866,7 +2866,7 @@ joints.prototype.click = function() {
 	this.draw();
 	this.transmit(this.val);
 	this.connections = new Array();
-    
+
 }
 
 joints.prototype.move = function() {
@@ -2884,7 +2884,7 @@ joints.prototype.move = function() {
 joints.prototype.release = function() {
 		this.anix = this.deltaMove.x/this.GUI.w;
 		this.aniy = (this.deltaMove.y)/this.GUI.h;
-	
+
 }
 
 /** @method animate
@@ -2893,7 +2893,7 @@ joints.prototype.release = function() {
 */
 
 joints.prototype.animate = function(aniType) {
-	
+
 	switch (aniType) {
 		case "bounce":
 			nx.aniItems.push(this.aniBounce.bind(this));
@@ -2902,7 +2902,7 @@ joints.prototype.animate = function(aniType) {
 			nx.aniItems.splice(nx.aniItems.indexOf(this.aniBounce));
 			break;
 	}
-	
+
 }
 
 joints.prototype.anix = 0;
@@ -2925,8 +2925,8 @@ var widget = require('../core/widget');
 var drawing = require('../utils/drawing');
 var math = require('../utils/math');
 
-/** 
-	@class keyboard      
+/**
+	@class keyboard
 	Piano keyboard which outputs MIDI
 	```html
 	<canvas nx="keyboard"></canvas>
@@ -2939,7 +2939,7 @@ var keyboard = module.exports = function (target) {
 	this.defaultSize = { width: 300, height: 75 };
 	widget.call(this, target);
 
-	/** @property {integer} octaves  Number of octaves on the keyboard 
+	/** @property {integer} octaves  Number of octaves on the keyboard
 		```js
 			//This key pattern would put a black key between every white key
 			keyboard1.octaves = 1
@@ -2947,7 +2947,7 @@ var keyboard = module.exports = function (target) {
 		```
 
 	*/
-	
+
 	this.octaves = 3;
 
 	this.white = {
@@ -2982,7 +2982,7 @@ var keyboard = module.exports = function (target) {
 
 	//to enable multitouch
 	this.fingers = [
-		{ 
+		{
 			key: -1,
 			pkey: -1
 
@@ -2991,7 +2991,7 @@ var keyboard = module.exports = function (target) {
 	this.multitouch = false; // will auto switch to true if experiences 2 simultaneous touches
 	this.oneleft = false;
 
-	/** @property {string} mode Play mode. Currently accepts "button" (default) or "sustain" in which each key acts as a toggle. */	
+	/** @property {string} mode Play mode. Currently accepts "button" (default) or "sustain" in which each key acts as a toggle. */
 	this.mode = "button" // modes: "button", "sustain" and, possibly in future, "aftertouch"
 
 	// for each key: x, y, w, h, color, on, note
@@ -3001,7 +3001,7 @@ var keyboard = module.exports = function (target) {
 		| --- | ---
 		| *on* | 0 if noteon, 1 if noteoff
 		| *note* | MIDI value of key pressed
-		| *midi* | paired MIDI message as a string - example "20 0" - This is to allow for simultaneous arrival of the MIDI pair if sent as an OSC message. 
+		| *midi* | paired MIDI message as a string - example "20 0" - This is to allow for simultaneous arrival of the MIDI pair if sent as an OSC message.
 	*/
 	this.val = {
 		on: 0,
@@ -3010,7 +3010,7 @@ var keyboard = module.exports = function (target) {
 	};
 
 	this.init();
-	
+
 }
 util.inherits(keyboard, widget);
 
@@ -3081,7 +3081,7 @@ keyboard.prototype.draw = function() {
 	with (this.context) {
 		strokeStyle = this.colors.borderhl;
 		lineWidth = 1;
-			
+
 		for (var i in this.wkeys) {
 			fillStyle = this.wkeys[i].on ? this.colors.borderhl : this.colors.fill
 			strokeRect(this.wkeys[i].x,0,this.white.width,this.white.height);
@@ -3118,7 +3118,7 @@ keyboard.prototype.toggle = function(key, data) {
 			var amp = math.invert(this.clickPos.y/this.GUI.h) * 128;
 			amp = math.prune(math.clip(amp,5,128),0);
 
-			this.val = { 
+			this.val = {
 				on: on*amp,
 				note: key.note,
 				midi: key.note + " " + on
@@ -3138,7 +3138,7 @@ keyboard.prototype.toggle = function(key, data) {
 			var amp = math.invert(this.clickPos.y/this.GUI.h) * 128;
 			amp = math.prune(math.clip(amp,5,128),0);
 
-			this.val = { 
+			this.val = {
 				on: on*amp,
 				note: key.note,
 				midi: key.note + " " + on
@@ -3225,7 +3225,7 @@ keyboard.prototype.move = function(e) {
 keyboard.prototype.release = function(e) {
 	if (this.clickPos.touches.length>1 || this.multitouch) {
 		this.keysinuse = new Array();
-		for (var j=0;j<this.clickPos.touches.length;j++) { 
+		for (var j=0;j<this.clickPos.touches.length;j++) {
 			if (this.oneleft && this.clickPos.touches.length==1) {
 				break;
 			}
@@ -3260,8 +3260,8 @@ var drawing = require('../utils/drawing');
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class matrix      
+/**
+	@class matrix
 	Matrix of toggles, with sequencer functionality.
 	```html
 	<canvas nx="matrix"></canvas>
@@ -3273,7 +3273,7 @@ var widget = require('../core/widget');
 var matrix = module.exports = function (target) {
 	this.defaultSize = { width: 100, height: 100 };
 	widget.call(this, target);
-	
+
 
 	/** @property {integer}  row   Number of rows in the matrix
 	```js
@@ -3290,7 +3290,7 @@ var matrix = module.exports = function (target) {
 	```
 	*/
 	this.col = 4;
-	
+
 	this.cellHgt;
 	this.cellWid;
 
@@ -3343,7 +3343,7 @@ var matrix = module.exports = function (target) {
 
 	/** @property {integer}  cellBuffer  How much padding between matrix cells, in pixels */
 	this.cellBuffer = 4;
-	
+
 	/** @property {string}  sequenceMode  Sequence pattern (currently accepts "linear" which is default, or "random") */
 	this.sequenceMode = "linear"; // "linear" or "random". future options would be "wander" (drunk) or "markov"
 
@@ -3358,7 +3358,7 @@ var matrix = module.exports = function (target) {
 	this.starttime = nx.starttime;
 
 	this.init();
-	
+
 }
 util.inherits(matrix, widget);
 
@@ -3382,7 +3382,7 @@ matrix.prototype.init = function() {
 	this.draw();
 
   	this.life = this.unboundlife.bind(this)
-	
+
 }
 
 matrix.prototype.draw = function() {
@@ -3407,7 +3407,7 @@ matrix.prototype.draw = function() {
 			var boxwid = this.cellWid;
 			var boxhgt = this.cellHgt;
 
-			
+
 			with (this.context) {
 				strokeStyle = this.colors.border;
 				lineWidth = this.cellBuffer;
@@ -3417,7 +3417,7 @@ matrix.prototype.draw = function() {
 					fillStyle = this.colors.fill;
 				}
 				fillRect(st_x+this.cellBuffer/2, st_y+this.cellBuffer/2, boxwid-this.cellBuffer, boxhgt-this.cellBuffer);
-			
+
 				// sequencer highlight
 				if (this.place == j) {
 					globalAlpha = 0.4;
@@ -3427,7 +3427,7 @@ matrix.prototype.draw = function() {
 				}
 
 			}
-		} 
+		}
 	}
 
 	this.drawLabel();
@@ -3469,7 +3469,7 @@ matrix.prototype.click = function(e) {
 
 matrix.prototype.move = function(e) {
 	if (this.clicked) {
-		
+
 		this.cur = {
 			col: ~~(this.clickPos.x/this.cellWid),
 			row: ~~(this.clickPos.y/this.cellHgt)
@@ -3540,7 +3540,7 @@ matrix.prototype.sequence = function(bpm) {
 
 	if (bpm) {
 		this.bpm = bpm;
-	}	
+	}
 	this.sequencing = true;
 	requestAnimationFrame(this.seqStep.bind(this));
 
@@ -3623,7 +3623,7 @@ matrix.prototype.seqStep = function() {
 	this.lastframe = this.thisframe;
     if (this.sequencing) {
 		requestAnimationFrame(this.seqStep.bind(this));
-	}  
+	}
 }
 
 /** @method jumpToCol
@@ -3700,7 +3700,7 @@ Alters the matrix according to Conway's Game of Life. Matrix.life() constitutes 
   setInterval(matrix1.life,80)
 ```
 */
-matrix.prototype.life = function() { 
+matrix.prototype.life = function() {
   return false;
 }
 
@@ -3708,8 +3708,8 @@ matrix.prototype.life = function() {
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class message      
+/**
+	@class message
 	Send a string of text.
 	```html
 	<canvas nx="message"></canvas>
@@ -3718,12 +3718,12 @@ var widget = require('../core/widget');
 */
 
 var message = module.exports = function (target) {
-	
+
 	this.defaultSize = { width: 100, height: 30 };
 	widget.call(this, target);
-	
 
-	/** @property {object}  val   
+
+	/** @property {object}  val
 		| &nbsp; | data
 		| --- | ---
 		| *value* | Text of message, as string
@@ -3735,7 +3735,7 @@ var message = module.exports = function (target) {
 
 	/** @property {integer} size Text size in px */
 	this.size = 14;
-	
+
 }
 util.inherits(message, widget);
 
@@ -3756,7 +3756,7 @@ message.prototype.draw = function() {
 			fillStyle = this.colors.fill;
 		}
 		fillRect(0,0,this.GUI.w,this.GUI.h)
-		
+
 		if (this.clicked) {
 			fillStyle = this.colors.black;
 		} else {
@@ -3781,10 +3781,10 @@ var util = require('util');
 var drawing = require('../utils/drawing');
 var widget = require('../core/widget');
 
-/** 
-    
+/**
+
     @public
-    @class meter 
+    @class meter
 
     Decibel level meter.
 
@@ -3830,13 +3830,13 @@ meter.prototype.init = function(){
 
 
 
-/** @method setup  
+/** @method setup
     Connect the meter to an audio source and start the meter's graphics.
     @param {audio context} [context] The audio context hosting the source node
     @param {audio node} [source] The audio source node to analyze
     */
 meter.prototype.setup = function(actx,source){
-    this.actx = actx;   
+    this.actx = actx;
     this.source = source;
 
     this.analyser = this.actx.createAnalyser();
@@ -3845,12 +3845,12 @@ meter.prototype.setup = function(actx,source){
     this.bufferLength = this.analyser.frequencyBinCount;
     this.dataArray = new Uint8Array(this.bufferLength);
     this.source.connect(this.analyser);
-    
+
     this.draw();
 }
 
 meter.prototype.draw = function(){
-    
+
     if(this.dataArray) {
         this.analyser.getByteTimeDomainData(this.dataArray);
 
@@ -3868,7 +3868,7 @@ meter.prototype.draw = function(){
 
             //scales: -40 to +10 db range => a number of bars
             var dboffset = Math.floor((db + 40) / (50/this.bars) );
-           
+
             for (var i = 0; i<this.bars; i++) {
 
                 // 0+ db is red
@@ -3895,17 +3895,17 @@ meter.prototype.draw = function(){
     setTimeout(function() {
         window.requestAnimationFrame(this.draw.bind(this));
     }.bind(this), 80)
-    
+
 }
-    
-    
+
+
 },{"../core/widget":3,"../utils/drawing":5,"util":44}],22:[function(require,module,exports){
 var math = require('../utils/math')
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class metro      
+/**
+	@class metro
 	Bouncing ball metronome
 	```html
 	<canvas nx="metro"></canvas>
@@ -3918,8 +3918,8 @@ var metro = module.exports = function (target) {
 	widget.call(this, target);
 
 	//define unique attributes
-	
-	/** @property {object}  val   
+
+	/** @property {object}  val
 		| &nbsp; | data
 		| --- | ---
 		| *beat* | Which side the ball is bouncing on (0 if left, 1 if right)
@@ -3941,7 +3941,7 @@ var metro = module.exports = function (target) {
 
 	nx.aniItems.push(this.advance.bind(this));
 	this.active = true;
-	
+
 	this.init();
 }
 util.inherits(metro, widget);
@@ -3967,15 +3967,15 @@ metro.prototype.draw = function() {
 	this.erase()
 	with (this.context) {
 		fillStyle = this.colors.fill;
-		fillRect(0,0,this.GUI.w,this.GUI.h); 
+		fillRect(0,0,this.GUI.w,this.GUI.h);
 
 		beginPath();
 		fillStyle = this.colors.accent;
-		arc(this.x, this.y, this.nodeSize, 0, Math.PI*2, true);					
+		arc(this.x, this.y, this.nodeSize, 0, Math.PI*2, true);
 		fill();
 		closePath();
 	}
-	
+
 	this.drawLabel();
 }
 
@@ -4018,8 +4018,8 @@ var math = require('../utils/math')
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class motion      
+/**
+	@class motion
 	Mobile motion sensor. Does not work on all devices! <br> **Notes:** Clicking on this widget toggles it inactive or active. <br>
 	We recommend not calling .init() on this object after the original initialization, because it will add additional redundant motion listeners to your document.
 	```html
@@ -4031,7 +4031,7 @@ var widget = require('../core/widget');
 var motion = module.exports = function (target) {
 	this.defaultSize = { width: 75, height: 75 };
 	widget.call(this, target);
-	
+
 	this.motionLR;
 	this.motionFB;
 	this.z;
@@ -4042,7 +4042,7 @@ var motion = module.exports = function (target) {
 	this.py = 0;
 	this.pz = 0;
 
-	/** @property {object}  val  Object containing the core interactive aspects of the widget, which are also its data output. Has the following properties: 
+	/** @property {object}  val  Object containing the core interactive aspects of the widget, which are also its data output. Has the following properties:
 		| &nbsp; | data
 		| --- | ---
 		| *x* | X-axis motion if supported (-1 to 1)
@@ -4057,7 +4057,7 @@ var motion = module.exports = function (target) {
 
 	/** @property {string}  text   Text shown on motion object
 	*/
-	
+
 	this.text = "Motion";
 	this.init();
 
@@ -4071,12 +4071,12 @@ var motion = module.exports = function (target) {
 			this.active = false;
 		}
 	}
-	
+
 }
 util.inherits(motion, widget);
 
 motion.prototype.deviceMotionHandler = function() {
-	
+
 	this.val = {
 		x: math.prune(this.motionLR/10,4),
 		y: math.prune(this.motionFB/10,4),
@@ -4084,12 +4084,12 @@ motion.prototype.deviceMotionHandler = function() {
 	}
 
 	this.transmit(this.val);
-	
+
 }
 
 motion.prototype.motionlistener = function(e) {
 	var data = e.acceleration
-	
+
 	if (this.active) {
 
 
@@ -4108,7 +4108,7 @@ motion.prototype.motionlistener = function(e) {
 				fillStyle = this.colors.black
 				font="12px courier";
 				textAlign = "center"
-				fillText("no data",this.GUI.w/2,this.GUI.h/2)	
+				fillText("no data",this.GUI.w/2,this.GUI.h/2)
 			}
 			this.active = false;
 		}
@@ -4120,7 +4120,7 @@ motion.prototype.init = function() {
 }
 
 motion.prototype.draw = function() {
-	
+
 	this.erase()
 
 	with (this.context) {
@@ -4183,8 +4183,8 @@ var util = require('util');
 var widget = require('../core/widget');
 var math = require('../utils/math');
 
-/** 
-	@class mouse      
+/**
+	@class mouse
 	Mouse tracker, relative to web browser window.
 	```html
 	<canvas nx="mouse"></canvas>
@@ -4193,11 +4193,11 @@ var math = require('../utils/math');
 */
 
 var mouse = module.exports = function (target) {
-	
+
 	this.defaultSize = { width: 98, height: 100 };
 	widget.call(this, target);
 
-	/** @property {object}  val   
+	/** @property {object}  val
 		| &nbsp; | data
 		| --- | ---
 		| *x* | x value of mouse relative to browser
@@ -4208,25 +4208,25 @@ var mouse = module.exports = function (target) {
 	this.val = {
 		x: 0,
 		y: 0,
-		deltax: 0, 
+		deltax: 0,
 		deltay: 0
 	}
 	this.inside = new Object();
 	this.boundmove = this.preMove.bind(this)
 	this.mousing = window.addEventListener("mousemove", this.boundmove, false);
-	
+
 	this.init();
 }
 util.inherits(mouse, widget);
 
 mouse.prototype.init = function() {
-	
+
 	this.inside.height = this.GUI.h;
 	this.inside.width = this.GUI.w;
 	this.inside.left = 0;
 	this.inside.top = 0;
 	this.inside.quarterwid = (this.inside.width)/4;
-	 
+
 	this.draw();
 }
 
@@ -4235,7 +4235,7 @@ mouse.prototype.draw = function() {
 
 	with (this.context) {
 		fillStyle = this.colors.fill;
-		fillRect(0,0,this.GUI.w,this.GUI.h); 
+		fillRect(0,0,this.GUI.w,this.GUI.h);
 
 		var scaledx = -(this.val.x) * this.GUI.h;
 		var scaledy = -(this.val.y) * this.GUI.h;
@@ -4259,7 +4259,7 @@ mouse.prototype.draw = function() {
 */
 		globalAlpha = 1;
 	}
-	
+
 	this.drawLabel();
 }
 
@@ -4283,8 +4283,8 @@ var math = require('../utils/math')
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class multislider      
+/**
+	@class multislider
 	Multiple vertical sliders in one interface.
 	```html
 	<canvas nx="multislider"></canvas>
@@ -4292,14 +4292,14 @@ var widget = require('../core/widget');
 	<canvas nx="multislider" style="margin-left:25px"></canvas>
 */
 var multislider = module.exports = function (target) {
-	
+
 	this.defaultSize = { width: 100, height: 75 };
 	widget.call(this, target);
-	
+
 	/** @property {integer} sliders Number of sliders in the multislider. (Must call .init() after changing this setting, or set with .setNumberOfSliders) */
 	this.sliders = 15;
 
-	/** @property {array}  val   Array of slider values. <br> **Note:** This widget's output is not .val! Transmitted output is:	
+	/** @property {array}  val   Array of slider values. <br> **Note:** This widget's output is not .val! Transmitted output is:
 
 		| &nbsp; | data
 		| --- | ---
@@ -4307,7 +4307,7 @@ var multislider = module.exports = function (target) {
 		| list | all multislider values as list. (if the interface sends to js or node, this list will be an array. if sending to ajax, max7, etc, the list will be a string of space-separated values)
 
 	*/
-	
+
 	this.sliderClicked = 0;
 	this.oldSliderToMove;
 	this.init();
@@ -4329,11 +4329,11 @@ multislider.prototype.draw = function() {
 	with (this.context) {
 		fillStyle = this.colors.fill;
 		fillRect(0,0,this.GUI.w,this.GUI.h);
-		
+
 		strokeStyle = this.colors.accent;
 		fillStyle = this.colors.accent;
 		lineWidth = 5;
-    	
+
 		for(var i=0; i<this.sliders; i++) {
 			beginPath();
 			moveTo(i*this.sliderWidth, this.GUI.h-this.val[i]*this.GUI.h);
@@ -4343,7 +4343,7 @@ multislider.prototype.draw = function() {
 			lineTo(i*this.sliderWidth,  this.GUI.h);
 			globalAlpha = 0.3 - (i%3)*0.1;
 			fill();
-			closePath(); 
+			closePath();
 			globalAlpha = 1;
 		//	var separation = i==this.sliders-1 ? 0 : 1;
 		//	fillRect(i*this.sliderWidth, this.GUI.h-this.val[i]*this.GUI.h, this.sliderWidth-separation, this.val[i]*this.GUI.h)
@@ -4386,7 +4386,7 @@ multislider.prototype.move = function(firstclick) {
 					this.val[this.oldSliderToMove+i] = this.val[this.oldSliderToMove] + (this.val[sliderToMove] - this.val[this.oldSliderToMove]) * ((i/(missed+1)));
 				}
 			}
-		
+
 		}
 		this.draw();
 	}
@@ -4400,7 +4400,7 @@ multislider.prototype.move = function(firstclick) {
 	}
 	this.transmit(msg);
 	this.oldSliderToMove = sliderToMove;
-	
+
 }
 
 /** @method setNumberOfSliders
@@ -4439,8 +4439,8 @@ var drawing = require('../utils/drawing');
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class multitouch      
+/**
+	@class multitouch
 	Multitouch 2d-slider with up to 5 points of touch.
 	```html
 	<canvas nx="multitouch"></canvas>
@@ -4449,14 +4449,14 @@ var widget = require('../core/widget');
 */
 
 var multitouch = module.exports = function (target) {
-	
+
 	this.defaultSize = { width: 200, height: 200 };
 	widget.call(this, target);
-	
+
 	//unique attributes
 	this.nodeSize = this.GUI.w/10;
 
-	/** @property {object}  val   
+	/** @property {object}  val
 		| &nbsp; | data
 		| --- | ---
 		| *touch1.x* | x position of first touch
@@ -4471,14 +4471,14 @@ var multitouch = module.exports = function (target) {
 			y: 0
 		}
 	}
-	
+
 	this.nodes = new Array();
-	
+
 	/** @property {string}  text  Text that will show when object is static */
 	this.text = "multitouch";
 
 	this.rainbow = ["#00f", "#04f", "#08F", "0AF", "0FF"];
-	
+
 	/** @property {string}  mode   "normal" or "matrix" mode. "matrix" mode has a GUI of discrete touch areas.
 	*/
 	this.mode = "normal";
@@ -4527,7 +4527,7 @@ multitouch.prototype.draw = function() {
 							lineWidth = 1;
 							var circx = i*this.GUI.w/this.cols + (this.GUI.w/this.cols)/2;
 							var circy = j*this.GUI.h/this.rows + (this.GUI.h/this.rows)/2;
-							arc(circx, circy, (this.GUI.h/this.rows)/2, 0, Math.PI*2, true);					
+							arc(circx, circy, (this.GUI.h/this.rows)/2, 0, Math.PI*2, true);
 							stroke();
 							fillStyle = this.colors.border;
 							textAlign = "center";
@@ -4535,7 +4535,7 @@ multitouch.prototype.draw = function() {
 							if (this.matrixLabels) {
 								fillText(this.matrixLabels[count%this.matrixLabels.length], circx, circy);
 								count++
-							} 
+							}
 							var thisarea = {
 								x: i*this.GUI.w/this.cols,
 								y: j*this.GUI.h/this.rows,
@@ -4562,14 +4562,14 @@ multitouch.prototype.draw = function() {
 		} else {
 			if (this.clickPos.touches.length>=1) {
 				for (var i=0;i<this.clickPos.touches.length;i++) {
-					
+
 					with (this.context) {
 						globalAlpha=0.5;
 						beginPath();
 						fillStyle = this.colors.accent;
 						strokeStyle = this.colors.border;
 						lineWidth = this.lineWidth;
-						arc(this.clickPos.touches[i].x, this.clickPos.touches[i].y, this.nodeSize, 0, Math.PI*2, true);					
+						arc(this.clickPos.touches[i].x, this.clickPos.touches[i].y, this.nodeSize, 0, Math.PI*2, true);
 						fill();
 						//	stroke();
 						closePath();
@@ -4578,10 +4578,10 @@ multitouch.prototype.draw = function() {
 						fillStyle = this.rainbow[i];
 						strokeStyle = this.colors.border;
 						lineWidth = this.lineWidth;
-						arc(this.clickPos.touches[i].x, this.clickPos.touches[i].y, this.nodeSize, 0, Math.PI*2, true);					
+						arc(this.clickPos.touches[i].x, this.clickPos.touches[i].y, this.nodeSize, 0, Math.PI*2, true);
 						fill();
 						//	stroke();
-						closePath(); 
+						closePath();
 						globalAlpha=1;
 					}
 				}
@@ -4622,10 +4622,10 @@ multitouch.prototype.release = function() {
 		}
 		this.transmit(this.val);
 	}
-	
+
 	this.draw();
 	this.sendit();
-	
+
 }
 
 multitouch.prototype.sendit = function() {
@@ -4643,8 +4643,8 @@ var math = require('../utils/math')
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class number      
+/**
+	@class number
 	Number box
 	```html
 	<canvas nx="number"></canvas>
@@ -4655,12 +4655,12 @@ var widget = require('../core/widget');
 var number = module.exports = function (target) {
 	this.defaultSize = { width: 50, height: 20 };
 	widget.call(this, target);
-	
-	/** @property {object}  val    
+
+	/** @property {object}  val
 		| &nbsp; | data
 		| --- | ---
 		| *value* | Number value
-		
+
 		```js
 			// Sets number1.val.value to 20
 			number1.set({
@@ -4703,7 +4703,7 @@ var number = module.exports = function (target) {
 	/** @property {float}  rate   Sensitivity of dragging. Default is .25
 
 		```js
-		    // For fine tuning 
+		    // For fine tuning
 			number1.rate = .001;
 		```
 	*/
@@ -4715,18 +4715,18 @@ var number = module.exports = function (target) {
 			// For an int counter
 			number1.decimalPlaces = 0;
 		```
-	*/ 
+	*/
 	this.decimalPlaces = 3;
 	this.lostdata = 0;
 	this.actual = 0;
 
 	// SWAP
-	// 
+	//
 	this.canvas.ontouchstart = null;
 	this.canvas.ontouchmove = null;
 	this.canvas.ontouchend = null;
 
-	var htmlstr = '<input type="text" nx="number" id="'+this.canvasID+'" style="height:'+this.GUI.h+'px;width:'+this.GUI.w+'px;font-size:'+this.GUI.h/2+'px;"></input><canvas height="1px" width="1px" style="display:none"></canvas>'                   
+	var htmlstr = '<input type="text" nx="number" id="'+this.canvasID+'" style="height:'+this.GUI.h+'px;width:'+this.GUI.w+'px;font-size:'+this.GUI.h/2+'px;"></input><canvas height="1px" width="1px" style="display:none"></canvas>'
 	var canv = this.canvas
 	var cstyle = this.canvas.style
 	var parent = canv.parentNode
@@ -4797,7 +4797,7 @@ var number = module.exports = function (target) {
 	  }
 	}.bind(this));
 
-	
+
   // Setup interaction
   if (nx.isTouchDevice) {
     this.canvas.ontouchstart = this.preTouch;
@@ -4868,8 +4868,8 @@ var math = require('../utils/math')
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class position      
+/**
+	@class position
 	Two-dimensional touch slider.
 	```html
 	<canvas nx="position"></canvas>
@@ -4883,7 +4883,7 @@ var position = module.exports = function (target) {
 	this.defaultSize = { width: 150, height: 100 };
 
 	widget.call(this, target);
-	
+
 	/** @property {integer} nodeSize Size of touch node graphic. */
 	this.nodeSize = 15;
 
@@ -4897,7 +4897,7 @@ var position = module.exports = function (target) {
 		x: 0.5,
 		y: 0.5
 	}
-	
+
 	this.init();
 }
 
@@ -4939,13 +4939,13 @@ position.prototype.draw = function() {
 		} else if (drawingY>(this.GUI.h-this.nodeSize)) {
 			drawingY = this.GUI.h - this.nodeSize;
 		}
-	
+
 		with (this.context) {
 
 			// draw the touch point
 			beginPath();
 			fillStyle = this.colors.accent;
-			arc(drawingX, drawingY, this.nodeSize, 0, Math.PI*2, true);					
+			arc(drawingX, drawingY, this.nodeSize, 0, Math.PI*2, true);
 			fill();
 			closePath();
 
@@ -4953,13 +4953,13 @@ position.prototype.draw = function() {
 				// draw the emphasis circle
 				beginPath();
 				fillStyle = this.colors.accent;
-				arc(drawingX, drawingY, this.nodeSize*2, 0, Math.PI*2, true);					
+				arc(drawingX, drawingY, this.nodeSize*2, 0, Math.PI*2, true);
 				fill();
 				closePath();clearRect(0,this.GUI.h,this.GUI.w,this.height - this.GUI.h)
 			}
 		}
 	}
-	
+
 	this.drawLabel();
 }
 
@@ -5007,11 +5007,11 @@ position.prototype.touch = function() {
 }
 
 position.prototype.touchmove = function() {
-	
+
 }
 
 position.prototype.touchrelease = function() {
-	
+
 }
 
 
@@ -5021,8 +5021,8 @@ position.prototype.touchrelease = function() {
 
 
 
-/* 
- extra functions pertaining only to this widget 
+/*
+ extra functions pertaining only to this widget
 */
 
 position.prototype.scaleNode = function() {
@@ -5040,7 +5040,7 @@ position.prototype.scaleNode = function() {
 	@param {string} [type] Type of animation. Currently accepts "none" or "bounce", in which case the touch node can be tossed and bounces.
 */
 position.prototype.animate = function(aniType) {
-	
+
 	switch (aniType) {
 		case "bounce":
 			nx.aniItems.push(this.aniBounce.bind(this));
@@ -5049,7 +5049,7 @@ position.prototype.animate = function(aniType) {
 			nx.aniItems.splice(nx.aniItems.indexOf(this.aniBounce));
 			break;
 	}
-	
+
 }
 
 position.prototype.aniBounce = function() {
@@ -5078,8 +5078,8 @@ var util = require('util');
 var widget = require('../core/widget');
 var math = require('../utils/math')
 
-/** 
-	@class range      
+/**
+	@class range
 	Range slider
 	```html
 	<canvas nx="range"></canvas>
@@ -5091,7 +5091,7 @@ var range = module.exports = function (target) {
 	this.defaultSize = { width: 110, height: 35 };
 	widget.call(this, target);
 
-	/** @property {object}  val  Object containing core interactive aspects of widget, which are also its data output. Has the following properties: 
+	/** @property {object}  val  Object containing core interactive aspects of widget, which are also its data output. Has the following properties:
 		| &nbsp; | data
 		| --- | ---
 		| *start* | Range start value (float 0-1)
@@ -5106,7 +5106,7 @@ var range = module.exports = function (target) {
 
 
 	// handling horiz possibility
-	/** @property {boolean}  hslider  Whether or not the slider is a horizontal slider. Default is false, but set automatically to true if the slider is wider than it is tall. */  
+	/** @property {boolean}  hslider  Whether or not the slider is a horizontal slider. Default is false, but set automatically to true if the slider is wider than it is tall. */
 	this.hslider = false;
 	this.handle;
 	this.relhandle;
@@ -5138,11 +5138,11 @@ range.prototype.init = function() {
 
 range.prototype.draw = function() {
 	this.erase();
-		
+
 	with (this.context) {
 		fillStyle = this.colors.fill;
 		fillRect(0,0,this.GUI.w,this.GUI.h);
-	
+
 		if (!this.hslider) {
 
 			var x1 = 0;
@@ -5159,7 +5159,7 @@ range.prototype.draw = function() {
 			var y1 = 0;
 			var x2 = this.val.stop*this.GUI.w;
 			var y2 = this.GUI.h;
-		   
+
 			fillStyle = this.colors.accent;
 			fillRect(x1,y1,x2-x1,y2-y1);
 		}
@@ -5232,13 +5232,13 @@ range.prototype.move = function() {
 			} else {
 				this.firsttouch = "start";
 			}
-		} 
+		}
 		this.val = {
 			start: math.clip(this.val.start, 0, 1),
 			stop: math.clip(this.val.stop, 0, 1),
-		} 
+		}
 		this.val['size'] = math.prune(math.clip(Math.abs(this.val.stop - this.val.start), 0, 1), 3)
-	
+
 		this.draw();
 
 		this.transmit(this.val);
@@ -5380,8 +5380,8 @@ var math = require('../utils/math')
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class slider      
+/**
+	@class slider
 	Slider (vertical or horizontal)
 	```html
 	<canvas nx="slider"></canvas>
@@ -5409,32 +5409,32 @@ var slider = module.exports = function (target) {
   	this.step = 0.001
   }
 
-	/** @property {object}  val   
+	/** @property {object}  val
 		| &nbsp; | data
 		| --- | ---
 		| *value* | Slider value (float 0-1)
 	*/
 	this.val.value = nx.scale(0.7,0,1,this.min,this.max)
-	
+
 
 	/** @property {string}  mode   Set "absolute" or "relative" mode. In absolute mode, slider will jump to click/touch position. In relative mode, it will not.
 	```js
 	nx.onload = function() {
 	&nbsp; // Slider will not jump to touch position.
-	&nbsp; slider1.mode = "relative" 
+	&nbsp; slider1.mode = "relative"
 	}
 	```
 	*/
 	this.mode = "absolute";
 
 	/** @property {boolean}  hslider   Whether or not the slider should be horizontal. This is set to true automatically if the canvas is wider than it is tall. To override the default decision, set this property to true to create a horizontal slider, or false to create a vertical slider.
-	
+
 	```js
 	nx.onload = function() {
-	&nbsp; //forces horizontal slider 
+	&nbsp; //forces horizontal slider
 	&nbsp; slider1.hslider = true
 	&nbsp; slider1.draw();
-	&nbsp; //forces vertical slider 
+	&nbsp; //forces vertical slider
 	&nbsp; slider2.hslider = false
 	&nbsp; slider2.draw();
 	}
@@ -5475,21 +5475,21 @@ slider.prototype.draw = function() {
 	this.digits = this.calculateDigits()
 
 	this.erase();
-		
+
 	with (this.context) {
 		fillStyle = this.colors.fill;
 		fillRect(0,0,this.GUI.w,this.GUI.h);
-	
+
 		if (!this.hslider) {
 
 			var x1 = 0;
 			var y1 = this.GUI.h-normalval*this.GUI.h;
 			var x2 = this.GUI.w;
 			var y2 = this.GUI.h;
-		
+
 			fillStyle = this.colors.accent;
 			fillRect(x1,y1,x2-x1,y2-y1);
-			
+
 			//text
 			var valtextsize = (this.GUI.w / this.digits.total) * 1.2
 			if (valtextsize > 6) {
@@ -5513,7 +5513,7 @@ slider.prototype.draw = function() {
 			var y1 = 0;
 			var x2 = normalval*this.GUI.w;
 			var y2 = this.GUI.h;
-		
+
 			fillStyle = this.colors.accent
 			fillRect(x1,y1,x2-x1,y2-y1)
 
@@ -5537,11 +5537,11 @@ slider.prototype.draw = function() {
 		}
 
 
-    var valtext = this.val.value.toFixed(this.digits.decimals)
-    textBaseline = valtextBaseline
-		textAlign = valtextAlign
-    font = valtextsize+"px 'Open Sans'"
-    fillText(valtext,textx,texty);
+    // var valtext = this.val.value.toFixed(this.digits.decimals)
+    // textBaseline = valtextBaseline
+	// 	textAlign = valtextAlign
+    // font = valtextsize+"px 'Open Sans'"
+    // fillText(valtext,textx,texty);
 
 
 		if (this.label) {
@@ -5572,7 +5572,7 @@ slider.prototype.move = function() {
 		if (this.clicked) {
 			if (!this.hslider) {
 				normalval = Math.abs((math.clip(this.clickPos.y/this.GUI.h, 0, 1) - 1));
-			} else {	
+			} else {
 				normalval = math.clip(this.clickPos.x/this.GUI.w, 0, 1);
 			}
 			this.draw();
@@ -5595,8 +5595,8 @@ slider.prototype.move = function() {
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class string      
+/**
+	@class string
 	Animated model of a plucked string interface.
 	```html
 	<canvas nx="string"></canvas>
@@ -5607,8 +5607,8 @@ var widget = require('../core/widget');
 var string = module.exports = function (target) {
 	this.defaultSize = { width: 150, height: 75 };
 	widget.call(this, target);
-	
-	/** @property {object}  val  Object containing the core interactive aspects of the widget, which are also its data output. Has the following properties: 
+
+	/** @property {object}  val  Object containing the core interactive aspects of the widget, which are also its data output. Has the following properties:
 		| &nbsp; | data
 		| --- | ---
 		| *string* | Index of the string that is plucked (starts at 0)
@@ -5624,7 +5624,7 @@ var string = module.exports = function (target) {
 	this.abovestring = new Array();
 	/** @property {integer}  friction  How quickly the string slows down */
 	this.friction = 1;
-	
+
 	var stringdiv;
 
 	this.init();
@@ -5660,7 +5660,7 @@ string.prototype.pulse = function() {
 /* @method setStrings Sets how many strings are in the widget.
 	```js
 	string1.setStrings(20);
-	``` 
+	```
 	*/
 string.prototype.setStrings = function(val) {
 	this.numberOfStrings = val;
@@ -5688,7 +5688,7 @@ string.prototype.draw = function() {
 					st.held = false;
 				}
 				st.stretch = st.stretch + st.direction;
-				
+
 				if (Math.abs(st.stretch) > st.maxstretch) {
 					//st.direction *= (-0.99);
 					st.direction *= -1;
@@ -5709,14 +5709,14 @@ string.prototype.draw = function() {
 			} else if (st.held) {
 					//will draw rounded
 					//if mouse is higher than string and gripup
-					//or if mouse is 
+					//or if mouse is
 					//	if (this.clickPos.y-st.y1<0 && st.gripup || this.clickPos.y-st.y1>0 && !st.gripup) {
 					beginPath();
 					moveTo(st.x1, st.y1);
 					quadraticCurveTo(this.clickPos.x, this.clickPos.y, st.x2, st.y2);
 					stroke();
 					closePath();
-					st.on = true;	
+					st.on = true;
 					/*	} else {
 					beginPath();
 					moveTo(st.x1, st.y1);
@@ -5759,7 +5759,7 @@ string.prototype.move = function() {
 			if (this.strings[i].held && Math.abs(this.clickPos.y - this.strings[i].y1) > this.GUI.h/(this.strings.length*3)) {
 
 				this.pluck(i)
-				
+
 			}
 		}
 	}
@@ -5770,7 +5770,7 @@ string.prototype.release = function() {
 		if (this.strings[i].held) {
 			this.pluck(i);
 		}
-	}	
+	}
 }
 
 string.prototype.pluck = function(which) {
@@ -5796,9 +5796,9 @@ var math = require('../utils/math')
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class tabs   
-	
+/**
+	@class tabs
+
 	```html
 	<canvas nx="tabs"></canvas>
 	```
@@ -5806,10 +5806,10 @@ var widget = require('../core/widget');
 */
 
 var tabs = module.exports = function(target) {
-	
+
 	this.defaultSize = { width: 150, height: 50 };
 	widget.call(this, target);
-	
+
 	//define unique attributes
 	this.choice = 0;
 	this.val = {
@@ -5869,7 +5869,7 @@ tabs.prototype.draw = function() {
 			font = this.fontSize+"px "+this.font;
 			fillText(this.options[i],this.tabwid*i+this.tabwid/2,this.GUI.h/2)
 		}
-		
+
 	}
 }
 
@@ -5887,8 +5887,8 @@ tabs.prototype.click = function() {
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class text    
+/**
+	@class text
 	Text editor. Outputs the typed text string when Enter is pressed. <br> **Note:** Currently the canvas is actaully replaced by an HTML textarea object. Any inline style on your canvas may be lost in this transformation. To style the resultant textarea element, we recommend creating CSS styles for the textarea element using its ID or the textarea tag.
 	```html
 	<canvas nx="text"></canvas>
@@ -5900,7 +5900,7 @@ var text = module.exports = function (target) {
 	this.defaultSize = { width: 200, height: 100 };
 	widget.call(this, target);
 
-	/** @property {object}  val   
+	/** @property {object}  val
 		| &nbsp; | data
 		| --- | ---
 		| *text* | Text string
@@ -5909,7 +5909,7 @@ var text = module.exports = function (target) {
 		text: ""
 	}
 
-	var htmlstr = '<textarea id="'+this.canvasID+'" style="height:'+this.GUI.h+'px;width:'+this.GUI.w+'px;" onkeydown="'+this.canvasID+'.change(event,this)"></textarea><canvas height="1px" width="1px" style="display:none"></canvas>'                   
+	var htmlstr = '<textarea id="'+this.canvasID+'" style="height:'+this.GUI.h+'px;width:'+this.GUI.w+'px;" onkeydown="'+this.canvasID+'.change(event,this)"></textarea><canvas height="1px" width="1px" style="display:none"></canvas>'
 	var canv = this.canvas
 	var cstyle = this.canvas.style
 	var parent = canv.parentNode;
@@ -5942,14 +5942,14 @@ var text = module.exports = function (target) {
 util.inherits(text, widget);
 
 text.prototype.init = function() {
-	
+
 	this.canvas.ontouchstart = null;
 	this.canvas.ontouchmove = null;
 	this.canvas.ontouchend = null;
 
     this.canvas.style.backgroundColor = this.colors.fill;
     this.canvas.style.color = this.colors.black;
-	
+
 }
 
 // should have a modified "set" function
@@ -5965,8 +5965,8 @@ text.prototype.change = function(e,el) {
 
 text.prototype.draw = function() {
 	// needed especially for ghost
-	this.el.value = this.val.text 
-	
+	this.el.value = this.val.text
+
     this.canvas.style.backgroundColor = this.colors.fill;
     this.canvas.style.color = this.colors.black;
 }
@@ -5975,8 +5975,8 @@ var math = require('../utils/math')
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class tilt      
+/**
+	@class tilt
 	Mobile and Mac/Chrome-compatible tilt sensor. May not work on all devices! <br> **Notes:** Clicking on this widget toggles it inactive or active. <br>
 	We recommend not calling .init() on this object after the original initialization, because it will add additional redundant tilt listeners to your document.
 	```html
@@ -5988,14 +5988,14 @@ var widget = require('../core/widget');
 var tilt = module.exports = function (target) {
 	this.defaultSize = { width: 50, height: 50 };
 	widget.call(this, target);
-	
+
 	this.tiltLR;
 	this.tiltFB;
 	this.z;
 	/** @property {boolean} active Whether or not the tilt widget is on (animating and transmitting data). */
 	this.active = true;
 
-	/** @property {object}  val  Object containing the core interactive aspects of the widget, which are also its data output. Has the following properties: 
+	/** @property {object}  val  Object containing the core interactive aspects of the widget, which are also its data output. Has the following properties:
 		| &nbsp; | data
 		| --- | ---
 		| *x* | X-axis rotation if supported (-1 to 1)
@@ -6010,7 +6010,7 @@ var tilt = module.exports = function (target) {
 
 	/** @property {string}  text   Text shown on tilt object
 	*/
-	
+
 	this.text = "TILT";
 	this.init();
 
@@ -6024,12 +6024,12 @@ var tilt = module.exports = function (target) {
 	} else {
 	  	console.log("Not supported on your device or browser.")
 	}
-	
+
 }
 util.inherits(tilt, widget);
 
 tilt.prototype.deviceOrientationHandler = function() {
-	
+
 	this.val = {
 		x: math.prune(this.tiltLR/90,3),
 		y: math.prune(this.tiltFB/90,3),
@@ -6039,7 +6039,7 @@ tilt.prototype.deviceOrientationHandler = function() {
 	if (this.active) {
 		this.transmit(this.val);
 	}
-	
+
 }
 
 tilt.prototype.chromeTilt = function(eventData) {
@@ -6053,8 +6053,8 @@ tilt.prototype.chromeTilt = function(eventData) {
 tilt.prototype.mozTilt = function(eventData) {
     this.tiltLR = eventData.x * 90;
     // y is the front-to-back tilt from -1 to +1, so we need to convert to degrees
-    // We also need to invert the value so tilting the device towards us (forward) 
-    // results in a positive value. 
+    // We also need to invert the value so tilting the device towards us (forward)
+    // results in a positive value.
     this.tiltFB = eventData.y * -90;
     this.z = eventData.z;
     this.deviceOrientationHandler();
@@ -6066,14 +6066,14 @@ tilt.prototype.init = function() {
 }
 
 tilt.prototype.draw = function() {
-	
+
 	this.erase();
 
 	with (this.context) {
 		fillStyle = this.colors.fill;
 	    fillRect(0,0,this.GUI.w,this.GUI.h);
 
-		save(); 
+		save();
 		translate(this.GUI.w/2,this.GUI.h/2)
 		rotate(-this.val.x*Math.PI/2);
 		translate(-this.GUI.w/2,-this.GUI.h/2)
@@ -6112,8 +6112,8 @@ var drawing = require('../utils/drawing');
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class toggle      
+/**
+	@class toggle
 	On/off toggle
 	```html
 	<canvas nx="toggle"></canvas>
@@ -6125,7 +6125,7 @@ var toggle = module.exports = function (target) {
 	this.defaultSize = { width: 50, height: 50 };
 	widget.call(this, target);
 
-	/** @property {object}  val  Object containing the core interactive aspects of the widget, which are also its data output. Has the following properties: 
+	/** @property {object}  val  Object containing the core interactive aspects of the widget, which are also its data output. Has the following properties:
 		| &nbsp; | data
 		| --- | ---
 		| *value*| 1 if on, 0 if off
@@ -6142,7 +6142,7 @@ toggle.prototype.init = function() {
 }
 
 toggle.prototype.draw = function() {
-	
+
 	this.erase()
 
 	with (this.context) {
@@ -6167,7 +6167,7 @@ toggle.prototype.draw = function() {
 	}
 
 	this.drawLabel();
-	
+
 }
 
 toggle.prototype.click = function() {
@@ -6184,8 +6184,8 @@ var drawing = require('../utils/drawing');
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class typewriter      
+/**
+	@class typewriter
 	Computer keyboard listener and visualization. (Desktop only) <br> **Note:** Clicking on the widget toggles it inactive or active, which can be useful if you need to temporarily type without triggering the widget's events.
 	```html
 	<canvas nx="typewriter"></canvas>
@@ -6197,15 +6197,15 @@ var typewriter = module.exports = function(target) {
 	this.defaultSize = { width: 300, height: 100 };
 	widget.call(this, target);
 
-	
+
 	this.letter = ""
 	this.keywid = this.GUI.w/14.5;
 	this.keyhgt = this.GUI.h/5
 
-	/** @property {boolean}  active  Whether or not the widget is on (listening for events and transmitting values).*/ 
+	/** @property {boolean}  active  Whether or not the widget is on (listening for events and transmitting values).*/
 	this.active = true;
 
-	/** @property {object}  val  Object containing the core interactive aspects of the widget, which are also its data output. Has the following properties: 
+	/** @property {object}  val  Object containing the core interactive aspects of the widget, which are also its data output. Has the following properties:
 		| &nbsp; | data
 		| --- | ---
 		| *key* | symbol of key pressed (example: "a")
@@ -6303,12 +6303,12 @@ var typewriter = module.exports = function(target) {
 	this.init();
 }
 util.inherits(typewriter, widget);
-	
+
 typewriter.prototype.init = function() {
 
 	this.keywid = this.GUI.w/14.5;
 	this.keyhgt = this.GUI.h/5
-	
+
 	this.draw();
 }
 
@@ -6324,7 +6324,7 @@ typewriter.prototype.draw = function() {	// erase
 	with (this.context) {
 
 		strokeStyle = this.colors.borderhl
-		fillStyle = this.colors.accent 
+		fillStyle = this.colors.accent
 		lineWidth = 1
 
 		for (var i=0;i<this.rows.length;i++) {
@@ -6340,20 +6340,20 @@ typewriter.prototype.draw = function() {	// erase
 				}
 
 				drawing.makeRoundRect(this.context, currkeyL , i*this.keyhgt,this.keywid*this.rows[i][j].width,this.keyhgt,4);
-					
+
 				if (this.rows[i][j].on) {
-					fillStyle = this.colors.accent 
-					strokeStyle = this.colors.accent 
+					fillStyle = this.colors.accent
+					strokeStyle = this.colors.accent
 					fill()
 					stroke()
 				} else {
-					fillStyle = this.colors.fill 
+					fillStyle = this.colors.fill
 					strokeStyle = this.colors.borderhl
 
 					fill()
 					stroke()
 				}
-	
+
 				currkeyL += this.keywid*this.rows[i][j].width;
 
 			}
@@ -6364,7 +6364,7 @@ typewriter.prototype.draw = function() {	// erase
 			fillStyle = this.colors.borderhl;
 			font = this.GUI.h+"px "+this.font;
 			fillText(this.val.key, this.GUI.w/2, this.GUI.h/2);
-			
+
 			globalAlpha = 1
 		}
 
@@ -6401,7 +6401,7 @@ typewriter.prototype.typekey = function(e) {
 			}
 		}
 		this.draw();
-	}	
+	}
 }
 
 typewriter.prototype.untype = function(e) {
@@ -6432,8 +6432,8 @@ var math = require('../utils/math')
 var util = require('util');
 var widget = require('../core/widget');
 
-/** 
-	@class vinyl      
+/**
+	@class vinyl
 	For the boom bap
 	```html
 	<canvas nx="vinyl"></canvas>
@@ -6444,7 +6444,7 @@ var widget = require('../core/widget');
 var vinyl = module.exports = function (target) {
 	this.defaultSize = { width: 100, height: 100 };
 	widget.call(this, target);
-	
+
 	this.circleSize;
 
 	/** @property speed The rotation increment. Default is 0.05. Not to be confused with .val.speed (see below) which is the data output. During rotation, .speed will always move towards .defaultSpeed */
@@ -6455,8 +6455,8 @@ var vinyl = module.exports = function (target) {
 	this.hasMovedOnce = false;
 
 	this.lockResize = true;
-	
-	/** @property {object}  val  Object containing the core interactive aspects of the widget, which are also its data output. Has the following properties: 
+
+	/** @property {object}  val  Object containing the core interactive aspects of the widget, which are also its data output. Has the following properties:
 		| &nbsp; | data
 		| --- | ---
 		| *speed*| Current speed of the record player's rotation. (Normal is 1.)
@@ -6482,7 +6482,7 @@ vinyl.prototype.draw = function() {
 		strokeStyle = this.colors.border;
 		fillStyle = this.colors.fill;
 		fillRect(0,0,this.GUI.w,this.GUI.h)
-		
+
 		//draw main circle
 		beginPath();
 		fillStyle = this.colors.black;
@@ -6509,7 +6509,7 @@ vinyl.prototype.draw = function() {
 		lineTo(this.center.x, this.center.y);
 		fill();
 		globalAlpha = 1;
-		closePath(); 
+		closePath();
 
 
 		//draw white circle in center
@@ -6517,7 +6517,7 @@ vinyl.prototype.draw = function() {
 		fillStyle = this.colors.white;
 		arc(this.center.x, this.center.y*1, this.circleSize/16, 0, Math.PI*2, false);
 		fill()
-		closePath(); 
+		closePath();
 
 	}
 
@@ -6540,7 +6540,7 @@ vinyl.prototype.move = function() {
 		this.grabPos = math.toPolar(this.clickPos.x-this.center.x,this.clickPos.y-this.center.y).angle
 	}
 
-	this.rotation = math.toPolar(this.clickPos.x-this.center.x,this.clickPos.y-this.center.y).angle + this.grabAngle - this.grabPos	
+	this.rotation = math.toPolar(this.clickPos.x-this.center.x,this.clickPos.y-this.center.y).angle + this.grabAngle - this.grabPos
 
 
 }
@@ -6551,7 +6551,7 @@ vinyl.prototype.release = function() {
 
 vinyl.prototype.spin = function() {
 
-	if (this.clicked) { 
+	if (this.clicked) {
 		this.speed /= 1.1;
 	} else {
 		this.speed = this.speed*0.9 + this.defaultspeed*0.1
@@ -6568,7 +6568,7 @@ vinyl.prototype.spin = function() {
 	this.draw();
 
 	this.transmit(this.val)
-	
+
 }
 
 vinyl.prototype.customDestroy = function() {
@@ -6579,8 +6579,8 @@ var util = require('util');
 var widget = require('../core/widget');
 var math = require('../utils/math')
 
-/** 
-	@class waveform      
+/**
+	@class waveform
 	Waveform visualizer and selecter
 	```html
 	<canvas nx="waveform"></canvas>
@@ -6591,7 +6591,7 @@ var waveform = module.exports = function (target) {
 	this.defaultSize = { width: 400, height: 125 };
 	widget.call(this, target);
 
-	/** @property {object}  val  Object containing core interactive aspects of widget, which are also its data output. Has the following properties: 
+	/** @property {object}  val  Object containing core interactive aspects of widget, which are also its data output. Has the following properties:
 		| &nbsp; | data
 		| --- | ---
 		| *starttime* | Waveform selection start position in milliseconds (integer)
@@ -6668,8 +6668,8 @@ waveform.prototype.init = function() {
 }
 
 
-/** 
-  @method setBuffer 
+/**
+  @method setBuffer
   Load a web audio AudioBuffer into the waveform ui, for analysis and visualization.
   @param {AudioBuffer} [buffer] The buffer to be loaded.
   */
@@ -6681,7 +6681,7 @@ waveform.prototype.setBuffer = function(prebuff) {
 	this.waveHeight = this.GUI.h / this.channels
 
 	// timescale
-	this.durationMS = (this.duration * 1000) 
+	this.durationMS = (this.duration * 1000)
 	this.timescale = 0
 	while (~~(this.durationMS/this.times[this.timescale].dur) > 7 && this.timescale < this.times.length ) {
 		this.timescale++;
@@ -6729,14 +6729,14 @@ waveform.prototype.setBuffer = function(prebuff) {
 	this.val.starttime = Math.round(this.val.start * this.durationMS)
 	this.val.stoptime = Math.round(this.val.stop * this.durationMS)
 	this.val.looptime = Math.round(this.val.size * this.durationMS)
-	
+
 
 	this.draw()
 
 }
 
-/** 
-  @method select 
+/**
+  @method select
   Set the selection start and end points.
   @param {integer} [start] Selection start point in milliseconds
   @param {integer} [end] Selection end point in milliseconds
@@ -6798,16 +6798,16 @@ waveform.prototype.draw = function() {
 				globalAlpha = 0.6
 				fillText(this.msToTime(i * this.timescale.dur,this.timescale.format),x+5,8)
 				globalAlpha = 1
-			}	
-		} 
-		
+			}
+		}
+
 
 		// range selection
 		var x1 = this.val.start*this.GUI.w;
 		var y1 = 0;
 		var x2 = this.val.stop*this.GUI.w;
 		var y2 = this.GUI.h;
-	   
+
 		fillStyle = this.colors.accent;
 		strokeStyle = this.colors.accent;
 		lineWidth = 2
@@ -6829,10 +6829,10 @@ waveform.prototype.draw = function() {
 			}
 			fillText(dur,x1 + (x2-x1)/2,this.GUI.h/2)
 		}
-		
+
 		globalAlpha = 1
 
-		
+
 	}
 
 }
@@ -6895,7 +6895,7 @@ waveform.prototype.move = function() {
 				this.val.start = this.clickPos.touches[1].x/this.GUI.w;
 			}
 		}
-	
+
 
 		if (this.val.stop < this.val.start) {
 			this.tempstart = this.val.start;
@@ -6906,13 +6906,13 @@ waveform.prototype.move = function() {
 			} else {
 				this.firsttouch = "start";
 			}
-		} 
-		
+		}
+
 	} else if (this.mode=="area") {
 
 		var moveloc = this.clickPos.x/this.GUI.w;
 		var movesize = (this.touchdown.y - this.clickPos.y)/this.GUI.h;
-	
+
 		movesize /= 4;
 		var size = this.startval.size + movesize;
 		size = math.clip(size,0.001,1);

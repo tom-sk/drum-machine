@@ -1,4 +1,30 @@
+body{
+    /*padding-top:60px;*/
+    background: #fff;
+}
+#content {
+    width:500px;
+}
 #knobPanel {
     width:200px;
     height: 200px;
+}
+
+#matrix2 {
+    width:70px;
+    height: 70px
+}
+#drum-controls {
+    position: relative;
+    margin:auto;
+    height:100px;
+    display:flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+.matrix-container {
+    display: inline-block;
+}
+#number {
+    font-size: 20px !important;
 }
