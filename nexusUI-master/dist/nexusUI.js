@@ -2312,13 +2312,13 @@ dial.prototype.draw = function() {
 
 		if (valtextsize > 7) {
 
-	    var valtext = this.val.value.toFixed(this.digits.decimals)
-
-			fillStyle = this.colors.borderhl
-	    textAlign = "center"
-	    textBaseline = "middle"
-	    font = valtextsize+"px 'Open Sans'"
-	    fillText(valtext,this.GUI.w/2,this.GUI.h/2);
+	    // var valtext = this.val.value.toFixed(this.digits.decimals)
+        //
+		// 	fillStyle = this.colors.borderhl
+	    // textAlign = "center"
+	    // textBaseline = "middle"
+	    // font = valtextsize+"px 'Open Sans'"
+	    // fillText(valtext,this.GUI.w/2,this.GUI.h/2);
 
 	  }
 
