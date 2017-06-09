@@ -1,5 +1,6 @@
 body{
     background: #fff;
+    font-family: Verdana, Geneva, sans-serif;
 }
 #content {
     width:500px;
@@ -10,7 +11,8 @@ body{
     height: 70px
 }
 #drum-controls {
-
+    display: flex;
+    flex-direction: row;
 }
 .matrix-container {
 
@@ -20,11 +22,14 @@ body{
 }
 .play-tempo{
     height: 100px;
-    width:200px;
-    margin:0 auto;
+    width:70px;
+    /*margin:0 auto;*/
 }
 #sliders{
     display: inline-flex;
+    justify-content: space-around;
+    /*margin-left:60px;*/
+    width:500px;
 }
 .slider-dial{
 
@@ -36,5 +41,8 @@ body{
 
 }
 .filter-controls {
-
+display: flex;
+justify-content: space-around;
+width:300px;
+margin: auto;
 }
