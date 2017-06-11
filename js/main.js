@@ -95,7 +95,6 @@ nx.onload = function(){
 
         number.resize(70, 30);
         number.min = 0;
-        number.max = 200;
         number.set({value: 120});
         number.on('*', function(data){Tone.Transport.bpm.value = data.value;});
 
