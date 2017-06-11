@@ -9,23 +9,75 @@
 
 
     <div class='columns' id='content'>
+        <div class='step-container'>
+          <ul class="matrix-list">
+            <li>HT</li>
+            <li>MT</li>
+            <li>LT</li>
+            <li>HH1</li>
+            <li>HH2</li>
+            <li>OH</li>
+            <li>CP</li>
+            <li>SN</li>
+            <li>BD1</li>
+            <li>BD2</li>
+          </ul>
+            <canvas nx="matrix" id='matrix1'></canvas>
 
-        <canvas nx="matrix" id='matrix1'></canvas>
-
+        </div>
 
         <div id='drum-controls'>
             <div class="play-tempo">
                 <div class='play-button'>
+
+                    <p class='play-label' id='playlabel'>Play</p>
                     <canvas nx="matrix" id='matrix2' ></canvas>
                 </div>
+                <p class="bpm-label">BPM</p>
                 <canvas nx="number" id="number"></canvas>
+                <p class='clear'>
+                  <a href="#" onclick="clearAllNotes()">Clear</a>
+                </p>
             </div>
 
             <div id="sliders">
+              <div class='mixer-label'>
+                <p>Pitch</p>
+                <p class='volume'>Volume</p>
+              </div>
+                <div class="slider-dial-container">
+                    <canvas class='dial' min='0' max='10' width='50' nx="dial" id="htPitch"></canvas>
+                    <canvas class='slider' min='0' max='100' nx="slider" id='htVel' label='HT' ></canvas>
+                </div>
+
+                <div class="slider-dial-container">
+                    <canvas class='dial' min='0' max='10' width='50' nx="dial" id="mtPitch"></canvas>
+                    <canvas class='slider' min='0' max='100' nx="slider" id='mtVel' label='MT' ></canvas>
+                </div>
+
+                <div class="slider-dial-container">
+                    <canvas class='dial' min='0' max='10' width='50' nx="dial" id="ltPitch"></canvas>
+                    <canvas class='slider' min='0' max='100' nx="slider" id='ltVel' label='LT' ></canvas>
+                </div>
+
                 <div class="slider-dial-container">
                     <canvas class='dial' min='0' max='10' width='50' nx="dial" id="hatPitch"></canvas>
-                    <canvas class='slider' min='0' max='100' nx="slider" id='hatVel' label='HH' ></canvas>
+                    <canvas class='slider' min='0' max='100' nx="slider" id='hatVel' label='HH1' ></canvas>
+                </div>
 
+                <div class="slider-dial-container">
+                    <canvas class='dial' min='0' max='10' width='50' nx="dial" id="hat2Pitch"></canvas>
+                    <canvas class='slider' min='0' max='100' nx="slider" id='hat2Vel' label='HH2' ></canvas>
+                </div>
+
+                <div class="slider-dial-container">
+                    <canvas class='dial' min='0' max='10' width='50' nx="dial" id="openHatPitch"></canvas>
+                    <canvas class='slider' min='0' max='100' nx="slider" id='openHatVel' label='OH' ></canvas>
+                </div>
+
+                <div class="slider-dial-container">
+                    <canvas class='dial' min='0' max='10' width='50' nx="dial" id="clapPitch"></canvas>
+                    <canvas class='slider' min='0' max='100' nx="slider" id='clapVel' label='CP' ></canvas>
                 </div>
 
                 <div class="slider-dial-container">
@@ -35,7 +87,12 @@
 
                 <div class="slider-dial-container">
                     <canvas class='dial' min='0' max='10' width='50' nx="dial" id="kickPitch"></canvas>
-                    <canvas class='slider' min='0' max='100' nx="slider" id='kickVel' label='BD'></canvas>
+                    <canvas class='slider' min='0' max='100' nx="slider" id='kickVel' label='BD1'></canvas>
+                </div>
+
+                <div class="slider-dial-container">
+                    <canvas class='dial' min='0' max='10' width='50' nx="dial" id="kick2Pitch"></canvas>
+                    <canvas class='slider' min='0' max='100' nx="slider" id='kick2Vel' label='BD2'></canvas>
                 </div>
 
             </div>

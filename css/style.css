@@ -1,11 +1,25 @@
 body{
     background: #fff;
     font-family: Verdana, Geneva, sans-serif;
+    color:#333;
 }
 #content {
-    width:500px;
+    width:940px;
+    margin: 0 auto;
+    margin-top: 90px;
+    height: 700px;
+    /*background: hotpink;*/
 }
-
+.step-container {
+      display: flex;
+}
+.step-container .matrix-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin:0;
+      list-style: none;
+}
 #matrix2 {
     width:70px;
     height: 70px
@@ -13,6 +27,8 @@ body{
 #drum-controls {
     display: flex;
     flex-direction: row;
+    margin-left: 80px;
+    width: 800px;;
 }
 .matrix-container {
 
@@ -21,20 +37,22 @@ body{
     font-size: 20px !important;
 }
 .play-tempo{
+  position: relative;
     height: 100px;
     width:70px;
-    /*margin:0 auto;*/
+    margin-top:20px;
 }
 #sliders{
     display: inline-flex;
     justify-content: space-around;
     /*margin-left:60px;*/
-    width:500px;
+    width:1500px;
 }
 .slider-dial-container{
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 }
 .slider-dial-container .dial {
   margin-top: -40px;
@@ -48,4 +66,55 @@ display: flex;
 justify-content: space-around;
 width:300px;
 margin: auto;
+}
+.mixer-label {
+  text-align: center;
+}
+.mixer-label .volume {
+  margin-top:70px;
+}
+
+.play-button {
+  position: relative;
+  text-align: center;
+}
+
+.play-label {
+  position: absolute;
+  top:0;
+  left:-55px;
+  color:#333;
+}
+.bpm-label {
+  position: absolute;
+  top:57px;
+  left:-55px;
+  color:#333;
+}
+.clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*position: absolute;*/
+  top:55px;
+  left:-85px;
+  color:#333;
+  cursor: pointer;
+  width: 70px;
+  height: 30px;
+  background: #ccc;
+  padding: 0px;
+  border-radius: 4px;
+  font-size: 18px;
+}
+.clear:active {
+  background: #333;
+}
+.clear a:active{
+  color:#fff;
+}
+.clear a {
+  color:#333;
+  text-decoration: none;
+
 }
