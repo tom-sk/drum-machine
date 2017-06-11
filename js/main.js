@@ -8,7 +8,7 @@ var keys = new Tone.MultiPlayer({
         "openHat" : "samples/ophat.wav",
         "clap" : "samples/clap.wav",
         "snare" : "samples/arsn.wav",
-        "kick" : "samples/kick.wav",
+        "kick" : "samples/kick.WAV",
         "kick2" : "samples/arkck.wav",
 
     },
