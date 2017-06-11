@@ -1,6 +1,6 @@
 var keys = new Tone.MultiPlayer({
     urls : {
-        "ht" : "drum-machine/samples/artoms21.wav",
+        "ht" : "samples/artoms21.wav",
         "mt" : "samples/artoms18.wav",
         "lt" : "samples/artoms15.wav",
         "hat" : "samples/vntg_hts03.wav",
