@@ -16,12 +16,11 @@ var keys = new Tone.MultiPlayer({
     fadeOut : 0.1,
 });
 var synth = new Tone.Synth().toMaster();
-
+var context = Tone.context;
+var tuna = new Tuna(context);
 var noteNames = Object.keys(keys.buffers._buffers);
-// var noteNames = ['hat', 'clhat', 'ophat', 'snare', 'kick', 'hardkick'];
 var stepLength = 16;
 var subDivision = "16n";
-// console.log(Object.keys(keys.buffers._buffers))
 
 
 function arrToObj(array, val){
@@ -53,11 +52,19 @@ function clearAllNotes() {
 
 var vel = Math.random() * 0.5 + 0.5;
 var volume = new Tone.Volume({volume:1});
-
+var reverb =  new tuna.Convolver({
+    highCut: 22050,                         //20 to 22050
+    lowCut: 20,                             //20 to 22050
+    dryLevel: 1,                            //0 to 1+
+    wetLevel: 0.5,                            //0 to 1+
+    level: 1,                               //0 to 1+, adjusts total output of both wet and dry
+    impulse: "dep/tuna-master/impulses/emt_140_medium_3.wav",    //the path to your impulse response
+    bypass: 0
+});
 Tone.Transport.start();
 Tone.Transport.bpm.value = 120;
 
-keys.chain(volume, Tone.Master);
+keys.chain(volume, reverb, Tone.Master);
 
 var vel = 0;
 var newVel = arrToObj(noteNames, 1);
@@ -84,6 +91,23 @@ nx.onload = function(){
         matrix1.col = stepLengthCalc(stepLength).length;
         matrix1.row = noteNames.length;
         matrix1.resize($("#content").width(), 450);
+        matrix1.matrix = [
+            [0,0,0,1,0,0,0,0,0,1],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,1,0,0,0,0,0,0],
+            [0,0,0,1,0,0,0,0,0,0],
+            [0,0,0,1,0,0,0,1,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,1],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,1],
+            [0,0,0,1,0,0,0,0,0,1],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,1,0,0,0,0,0,0],
+            [0,0,0,1,0,0,1,1,0,0],
+            [0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,1,0,0,0,0],
+        ]
         matrix1.init();
         matrix2.init();
         matrix1.draw();
